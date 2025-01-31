@@ -1,0 +1,32 @@
+#!/bin/bash
+
+packages=($(pacman -Qeq))
+index=0
+total=${#packages[@]}
+
+while true; do
+    clear
+    package="${packages[$index]}"
+    echo "Package $((index + 1)) of $total"
+    pacman -Qi "$package"
+
+    echo -e "\n[n] Next  [p] Previous  [d] Delete  [q] Quit"
+    read -n1 -s key
+
+    case "$key" in
+        n) ((index = (index + 1) % total)) ;;
+        p) ((index = (index - 1 + total) % total)) ;;
+        d)
+            echo -e "\nAre you sure you want to remove '$package'? (y/N)"
+            read -n1 -s confirm
+            if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+                sudo pacman -Rns "$package" && unset 'packages[index]'
+                packages=("${packages[@]}") # Re-index array
+                total=${#packages[@]}
+                ((index = index % total)) # Adjust index if needed
+            fi
+            ;;
+        q) break ;;
+    esac
+done
+

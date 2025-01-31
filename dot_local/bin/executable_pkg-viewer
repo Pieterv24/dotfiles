@@ -3,14 +3,19 @@
 packages=($(pacman -Qeq))
 index=0
 total=${#packages[@]}
+mode="Showing explicitly installed packages"
 
 while true; do
     clear
     package="${packages[$index]}"
+    echo "Showing: $mode"
     echo "Package $((index + 1)) of $total"
     pacman -Qi "$package"
 
-    echo -e "\n[n] Next  [p] Previous  [d] Delete  [q] Quit"
+    echo -e "\n[n] Next  [p] Previous"
+    echo -e "[d] Delete"
+    echo -e "[a] Show all packages  [e] Show explicitly installed packages"
+    echo -e "[q] Quit"
     read -n1 -s key
 
     case "$key" in
@@ -25,6 +30,24 @@ while true; do
                 total=${#packages[@]}
                 ((index = index % total)) # Adjust index if needed
             fi
+            ;;
+        a)
+            packages=($(pacman -Qq))
+            index=0
+            total=${#packages[@]}
+            mode="Showing all installed packages"
+            ;;
+        e)
+            packages=($(pacman -Qeq))
+            index=0
+            total=${#packages[@]}
+            mode="Showing explicitly installed packages"
+            ;;
+        u)
+            packages=($(pacman -Qqd | pacman -Rsu --print -))
+            index=0
+            total=${#packages[@]}
+            mode="Showing potentially unneeded packages"
             ;;
         q) break ;;
     esac

@@ -133,5 +133,6 @@
     "gitlens.plusFeatures.enabled": false,
 
     // RedHat
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls"
 }

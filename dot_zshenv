@@ -5,12 +5,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
-export USE_CCACHE=1
-export CCACHE_EXEC=/usr/bin/ccache
-
 export JAVA_HOME=/usr/lib/jvm/default
 
-export ANDROID_HOME=$HOME/Android/Sdk
-
 typeset -U path
-path=(~/.cargo/bin ~/.local/bin $ANDROID_HOME/platform-tools $path[@])
+path=(~/.cargo/bin ~/.local/bin $path[@])

@@ -5,6 +5,6 @@
 {{- /* Get monitor info from chezmoi config file */ -}}
 {{- range $index, $element := .monitors }}
   {{- if and $element.name $element.resolution $element.position $element.scale }}
-monitor = {{ $element.name }},{{ $element.resolution }},{{ $element.position }},{{ $element.scale }}
+monitor = {{ $element.name }}, {{ $element.resolution }}, {{ $element.position }}, {{ $element.scale }}
   {{- end }}
 {{- end}}

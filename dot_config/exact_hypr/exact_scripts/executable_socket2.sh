@@ -16,6 +16,14 @@ handle_windowtitlev2 () {
   esac
 }
 
+handle_monitoradded () {
+    # hyprctl dispatch moveworkspacetomonitor "1 1"
+    # hyprctl dispatch moveworkspacetomonitor "2 1"
+    # hyprctl dispatch moveworkspacetomonitor "4 1"
+    # hyprctl dispatch moveworkspacetomonitor "5 1"
+    echo "Monitor added"
+}
+
 handle() {
   # $1 Format: `EVENT>>DATA`
   # example: `workspace>>2`
@@ -25,6 +33,7 @@ handle() {
 
   case $event in
     windowtitlev2) handle_windowtitlev2 "$data";;
+    monitoradded*) handle_monitoradded;;
     *) echo "unhandled event: $event" ;;
   esac
 }

@@ -1,0 +1,6 @@
+[config]
+#...
+
+[templates.quickshell]
+input_path = './templates/quickshell-colors.qml'
+output_path = '~/quickshell-colors.qml'

@@ -2,11 +2,6 @@
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "SKIP_HOST_UPDATE": true,
-  "WINDOW_BOUNDS": {
-    "x": 23,
-    "y": 37,
-    "width": 3396,
-    "height": 1347
-  },
+  "BACKGROUND_COLOR": "#000000",
   "chromiumSwitches": {}
 }

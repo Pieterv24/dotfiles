@@ -29,10 +29,19 @@
     ],
     // Modules configuration
     "hyprland/workspaces": {
-        "format": "{name}",
+        // "format": "{name}",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "on-click": "activate"
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+        "urgent": "",
+        "active": "", // focused workspace on current monitor 
+        "visible": "", // focused workspace on other monitors
+        "default": "",
+        "empty": "" // persistent (created by this plugin)
+        },
+        "all-outputs": false // recommended
     },
     "cava": {
         //        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",

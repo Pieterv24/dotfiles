@@ -89,6 +89,30 @@ bind = $mainMod SHIFT, C, exec, grimblast save area
 # bind = $mainMod CTRL, B, exec, ~/.config/waybar/toggle.sh # Toggle waybar
 # bind = $mainMod CTRL, T, exec, ~/.config/waybar/themeswitcher.sh # Open waybar theme switcher
 
+{{- if .splitMonitorWorkspaces }}
+# Switch workspaces with mainMod + [0-9]
+bind = $mainMod, 1, split-workspace, 1 # Open workspace 1
+bind = $mainMod, 2, split-workspace, 2 # Open workspace 2
+bind = $mainMod, 3, split-workspace, 3 # Open workspace 3
+bind = $mainMod, 4, split-workspace, 4 # Open workspace 4
+bind = $mainMod, 5, split-workspace, 5 # Open workspace 5
+bind = $mainMod, 6, split-workspace, 6 # Open workspace 6
+bind = $mainMod, 7, split-workspace, 7 # Open workspace 7
+bind = $mainMod, 8, split-workspace, 8 # Open workspace 8
+bind = $mainMod, 9, split-workspace, 9 # Open workspace 9
+bind = $mainMod, 0, split-workspace, 10 # Open workspace 10
+
+bind = $mainMod SHIFT, 1, split-movetoworkspace, 1 # Move active window to workspace 1
+bind = $mainMod SHIFT, 2, split-movetoworkspace, 2 # Move active window to workspace 2
+bind = $mainMod SHIFT, 3, split-movetoworkspace, 3 # Move active window to workspace 3
+bind = $mainMod SHIFT, 4, split-movetoworkspace, 4 # Move active window to workspace 4
+bind = $mainMod SHIFT, 5, split-movetoworkspace, 5 # Move active window to workspace 5
+bind = $mainMod SHIFT, 6, split-movetoworkspace, 6 # Move active window to workspace 6
+bind = $mainMod SHIFT, 7, split-movetoworkspace, 7 # Move active window to workspace 7
+bind = $mainMod SHIFT, 8, split-movetoworkspace, 8 # Move active window to workspace 8
+bind = $mainMod SHIFT, 9, split-movetoworkspace, 9 # Move active window to workspace 9
+bind = $mainMod SHIFT, 0, split-movetoworkspace, 10 # Move active window to workspace 10
+{{- else }}
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1 # Open workspace 1
 bind = $mainMod, 2, workspace, 2 # Open workspace 2
@@ -134,11 +158,15 @@ bind = $mainMod SHIFT CTRL, 7, movetoworkspace, 17 # Move active window to works
 bind = $mainMod SHIFT CTRL, 8, movetoworkspace, 18 # Move active window to workspace 18
 bind = $mainMod SHIFT CTRL, 9, movetoworkspace, 19 # Move active window to workspace 19
 bind = $mainMod SHIFT CTRL, 0, movetoworkspace, 20 # Move active window to workspace 20
+{{- end }}
 
 bind = $mainMod, Tab, workspace, m+1 # Open next workspace
 bind = $mainMod SHIFT, Tab, workspace, m-1 # Open previous workspace
 {{- if .hyprexpo }}
 bind = $mainMod CTRL, Tab, hyprexpo:expo, toggle
+{{- end }}
+{{- if .hyprspace }}
+bind = SUPER, Tab, overview:toggle
 {{- end }}
 
 # Move through existing workspaces with SUPER + L/R

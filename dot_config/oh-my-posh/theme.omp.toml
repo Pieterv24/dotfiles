@@ -1,0 +1,187 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 3
+
+# console_title_template = '{{ .Shell }} in {{ .Folder }}'
+final_space = true
+# shell_integration = true
+# enable_cursor_positioning = true
+
+[palette]
+    black_text = '#000000'
+    white_text = '#ffffff'
+
+    shell = '#0077c2'
+    timer = '#837b9c'
+    prompt = '#e0f8ff'
+
+    root_background = '#ef5350'
+    root_foreground = '#FFFB38'
+
+    user_foreground = '#ffffff'
+    user_background = '#00BCD4'
+
+    path_background = '#008B8B'
+    path_foreground = '#ffffff'
+
+    python_background = '#306998'
+    python_foreground = '#FFE873'
+
+    java_background = '#0e8ac8'
+    java_foreground = '#ffffff'
+
+    go_background = '#ffffff'
+    go_foreground = '#06aad5'
+
+    rust_background = '#f3f0ec'
+    rust_foreground = '#925837'
+
+    git_background = '#59C9A5'
+    git_background_changed = '#FFFF00'
+    git_background_ahead = '#49416D'
+    git_background_behind = '#7A306C'
+    git_background_caugtup = '#fc0303'
+
+[secondary_prompt]
+template = '╰─ <p:white_text>></> '
+foreground = 'p:shell'
+background = 'transparent'
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+    [[blocks.segments]]
+    background = "p:shell"
+    foreground = "p:white_text"
+    leading_diamond = "╭─"
+    style = "diamond"
+    trailing_diamond = ""
+    template = " {{ .Name }} "
+    type = "shell"
+
+    [[blocks.segments]]
+    background = "p:timer"
+    foreground = "p:white_text"
+    style = "diamond"
+    template = "  {{ .FormattedMs }}⠀"
+    trailing_diamond = ""
+    type = "executiontime"
+
+        [blocks.segments.properties]
+        style = "roundrock"
+        threshold = 0
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
+
+    [[blocks.segments]]
+    background = "p:python_background"
+    foreground = "p:python_foreground"
+    leading_diamond = ""
+    style = "diamond"
+    template = " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+    trailing_diamond = " "
+    type = "python"
+
+    [[blocks.segments]]
+    background = "p:java_background"
+    foreground = "p:java_foreground"
+    leading_diamond = ""
+    style = "diamond"
+    template = " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    trailing_diamond = " "
+    type = "java"
+
+    [[blocks.segments]]
+    background = "p:go_background"
+    foreground = "p:go_foreground"
+    leading_diamond = ""
+    style = "diamond"
+    template = " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    trailing_diamond = " "
+    type = "go"
+
+    [[blocks.segments]]
+    background = "p:rust_background"
+    foreground = "p:rust_foreground"
+    leading_diamond = ""
+    style = "diamond"
+    template = " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    trailing_diamond = " "
+    type = "rust"
+
+    [[blocks.segments]]
+    template = ' {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }} '
+    foreground = 'p:black_text'
+    trailing_diamond = ""
+    leading_diamond = ""
+    background = 'p:git_background'
+    type = 'git'
+    style = 'diamond'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:black_text{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:white_text{{ end }}', '{{ if gt .Ahead 0 }}p:white_text{{ end }}']
+    background_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:git_background_changed{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git_background_caugtup{{ end }}', '{{ if gt .Ahead 0 }}p:git_background_ahead{{ end }}', '{{ if gt .Behind 0 }}p:git_background_behind{{ end }}']
+
+    [blocks.segments.properties]
+        branch_template = '{{ trunc 15 .Branch }}'
+        fetch_status = true
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+    [[blocks.segments]]
+    foreground = "p:shell"
+    style = "plain"
+    template = "╰─"
+    type = "text"
+
+    [[blocks.segments]]
+    style = "plain"
+    template = ""
+    type = "text"
+    force = true
+    foreground_templates = [
+        "{{ if not .Segments.Root.Enabled }}p:user_background{{ end }}",
+        "{{ if .Segments.Root.Enabled }}p:root_background{{ end }}"
+    ]
+
+    [[blocks.segments]]
+    background = "p:user_background"
+    foreground = "p:user_foreground"
+    style = "diamond"
+    trailing_diamond = ""
+    template = " "
+    type = "root"
+    alias = "Root"
+
+    [[blocks.segments]]
+    trailing_diamond = ''
+    template = '{{ if .SSHSession }} {{ end }}{{ .UserName }} '
+    foreground = 'p:user_foreground'
+    background = 'p:user_background'
+    type = 'session'
+    style = 'diamond'
+
+    [[blocks.segments]]
+    background = "p:path_background"
+    foreground = "p:path_foreground"
+    style = "diamond"
+    trailing_diamond = ""
+    template = "  {{ .Path }} "
+    type = "path"
+        [blocks.segments.properties]
+        folder_icon = "  "
+        home_icon = ""
+        style = "folder"
+
+    [[blocks.segments]]
+    foreground = "p:prompt"
+    foreground_templates = [ "{{ if gt .Code 0 }}#ef5350{{ end }}" ]
+    style = "plain"
+    template = " "
+    type = "status"
+
+        [blocks.segments.properties]
+        always_enabled = true

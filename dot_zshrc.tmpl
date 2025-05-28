@@ -49,8 +49,13 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-[ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases
+{{- if  .oh_my_posh }}
+[ -f ~/.zsh-config/oh-my-posh ] && source ~/.zsh-config/oh-my-posh
+{{- end }}
+{{- if .powerline_go }}
 [ -f ~/.zsh-config/powerline-go ] && source ~/.zsh-config/powerline-go
+{{- end }}
+[ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases
 [ -f ~/.zsh-config/nvm ] && source ~/.zsh-config/nvm
 [ -f ~/.zsh-config/darkmode ] && source ~/.zsh-config/darkmode
 [ -f ~/.zsh-config/wayland ] && [ "$XDG_SESSION_TYPE" = "wayland" ] && source ~/.zsh-config/wayland

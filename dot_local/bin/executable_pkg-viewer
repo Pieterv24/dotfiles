@@ -14,7 +14,11 @@ while true; do
 
     echo -e "\n[n] Next  [p] Previous"
     echo -e "[d] Delete"
+    echo -e "[m] Mark package reason as \"Dependency\""
+    echo -e "[k] Mark package reason as \"Explicit\""
     echo -e "[a] Show all packages  [e] Show explicitly installed packages"
+    echo -e "[w] Show explicitly installed packages (without depends)"
+    echo -e "[r] Show explicitly installed packages (without depends and opt-depends)"
     echo -e "[q] Quit"
     read -n1 -s key
 
@@ -31,23 +35,49 @@ while true; do
                 ((index = index % total)) # Adjust index if needed
             fi
             ;;
+        m)
+            echo -e "\nAre you sure you want to mark '$package' as a dependency? (y/N)"
+            read -n1 -s confirm
+            if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+                sudo pacman -D --asdeps "$package"
+            fi
+            ;;
+        k)
+            echo -e "\nAre you sure you want to mark '$package' as explicitly installed? (y/N)"
+            read -n1 -s confirm
+            if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+                sudo pacman -D --asdeps "$package"
+            fi
+            ;;
         a)
             packages=($(pacman -Qq))
             index=0
             total=${#packages[@]}
-            mode="Showing all installed packages"
+            mode="all installed packages"
             ;;
         e)
             packages=($(pacman -Qeq))
             index=0
             total=${#packages[@]}
-            mode="Showing explicitly installed packages"
+            mode="explicitly installed packages"
+            ;;
+        w)
+            packages=($(pacman -Qeqt))
+            index=0
+            total=${#packages[@]}
+            mode="explicitly installed packages (without depends)"
+            ;;
+        r)
+            packages=($(pacman -Qeqtt))
+            index=0
+            total=${#packages[@]}
+            mode="explicitly installed packages (without depends and optdepends)"
             ;;
         u)
             packages=($(pacman -Qqd | pacman -Rsu --print -))
             index=0
             total=${#packages[@]}
-            mode="Showing potentially unneeded packages"
+            mode="potentially unneeded packages"
             ;;
         q) break ;;
     esac

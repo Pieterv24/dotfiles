@@ -6,7 +6,11 @@
 # exec-once = ~/.config/hypr/scripts/launchWaybar.sh
 
 # Launch Quickshell
+{{- if .caelestia }}
+exec-once = qs -c ~/.config/quickshell/caelestia
+{{- else }}
 exec-once = quickshell
+{{- end }}
 
 # Reload plugins and send notification if something goes wrong
 exec-once = hyprpm reload -n
@@ -28,14 +32,20 @@ exec-once= systemctl --user start hyprpolkitagent
 # Run hypridle
 exec-once = hypridle
 
+{{- if not .caelestia }}
 # Load Dunst Notification Manager
 exec-once = systemctl start --user dunst.service
+{{- end }}
 
+{{- if not .caelestia }}
 # Using hyprpaper for wallpaper
 exec-once = hyprpaper
+{{- end }}
 
+{{- if not .caelestia }}
 # Start OSD service
 exec-once = avizo-service
+{{- end }}
 
 # Setup clipboard
 exec-once = wl-clip-persist --clipboard regular
@@ -55,3 +65,5 @@ exec-once = wl-clip-persist --clipboard regular
 exec-once = [workspace 11 silent] element-desktop --password-store="gnome-libsecret"
 # Start Discord
 exec-once = [workspace 11 silent] discord
+
+exec-once = hyprctl dispatch workspace 1

@@ -1,0 +1,127 @@
+'$schema' = 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json'
+version = 3
+
+# console_title_template = '{{ .Shell }} in {{ .Folder }}'
+final_space = true
+# shell_integration = true
+# enable_cursor_positioning = true
+
+[palette]
+    black = '#000000'
+    white = '#FFFFFF'
+    red = '#FF0000'
+    yellow = '#E5E512'
+    green = '#00D900'
+
+
+
+    purple = '#8700D7'
+    cyan = '#0FA8CD'
+    gray = '#3A3A3A'
+
+    root_background = 'p:purple'
+    root_foreground = 'p:red'
+
+    user_background = 'p:purple'
+    user_foreground = 'p:white'
+
+    path_background = 'p:cyan'
+    path_foreground = 'p:white'
+
+    timer_background = 'p:gray'
+    timer_foreground = "p:white"
+
+    git_background = 'p:yellow'
+    git_background_changed = 'p:green'
+    git_background_ahead = '#49416D'
+    git_background_behind = '#7A306C'
+    git_background_caugtup = '#fc0303'
+
+    spotify_background = '#1BD760'
+    spotify_foreground = 'p:black'
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+    # [[blocks.segments]]
+    #     type = "spotify"
+    #     style = "diamond"
+    #     trailing_diamond = ""
+    #     foreground = "p:spotify_foreground"
+    #     background = "p:spotify_background"
+
+    #     [blocks.segments.properties]
+    #     playing_icon = " "
+    #     paused_icon = " "
+    #     stopped_icon = " "
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+    [[blocks.segments]]
+    background = 'p:root_background'
+    foreground = 'p:root_foreground'
+    style = 'diamond'
+    trailing_diamond = ''
+    template = '  '
+    type = 'root'
+    alias = 'Root'
+
+    [[blocks.segments]]
+    trailing_diamond = ''
+    template = ' {{ if .SSHSession }} {{ end }}{{ .UserName }} '
+    foreground = 'p:user_foreground'
+    background = 'p:user_background'
+    type = 'session'
+    style = 'diamond'
+
+    [[blocks.segments]]
+    background = 'p:path_background'
+    foreground = 'p:path_foreground'
+    style = 'diamond'
+    trailing_diamond = ''
+    template = '  {{ .Path }} '
+    type = 'path'
+        [blocks.segments.properties]
+        style = 'folder'
+
+    [[blocks.segments]]
+    background = 'p:red'
+    foreground = 'p:path_foreground'
+    style = 'diamond'
+    trailing_diamond = ''
+    template = '{{if not .Writable }}  {{end}}'
+    type = 'path'
+
+[[blocks]]
+type = 'rprompt'
+alignment = 'right'
+
+    [[blocks.segments]]
+    template = ' {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }} '
+    foreground = 'p:black'
+    leading_diamond = ""
+    background = 'p:git_background'
+    type = 'git'
+    style = 'diamond'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:black{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:white{{ end }}', '{{ if gt .Ahead 0 }}p:white{{ end }}']
+    background_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:git_background_changed{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git_background_caugtup{{ end }}', '{{ if gt .Ahead 0 }}p:git_background_ahead{{ end }}', '{{ if gt .Behind 0 }}p:git_background_behind{{ end }}']
+
+    [blocks.segments.properties]
+        branch_template = '{{ trunc 15 .Branch }}'
+        fetch_status = true
+
+    [[blocks.segments]]
+    background = "p:timer_background"
+    foreground = "p:timer_foreground"
+    style = "diamond"
+    leading_diamond = ""
+    template = "  {{ .FormattedMs }}⠀"
+    type = "executiontime"
+
+        [blocks.segments.properties]
+        style = "roundrock"
+        threshold = 0

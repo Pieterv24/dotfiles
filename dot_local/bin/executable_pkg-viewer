@@ -18,7 +18,7 @@ while true; do
     echo -e "[k] Mark package reason as \"Explicit\""
     echo -e "[a] Show all packages  [e] Show explicitly installed packages"
     echo -e "[w] Show explicitly installed packages (without depends)"
-    echo -e "[r] Show explicitly installed packages (without depends and opt-depends)"
+    echo -e "[r] Show explicitly installed packages (without depends ignoring opt-depends)"
     echo -e "[q] Quit"
     read -n1 -s key
 
@@ -71,7 +71,7 @@ while true; do
             packages=($(pacman -Qeqtt))
             index=0
             total=${#packages[@]}
-            mode="explicitly installed packages (without depends and optdepends)"
+            mode="explicitly installed packages (without depends ignoring optdepends)"
             ;;
         u)
             packages=($(pacman -Qqd | pacman -Rsu --print -))

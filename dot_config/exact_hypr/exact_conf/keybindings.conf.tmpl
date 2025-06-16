@@ -14,8 +14,10 @@ $menu = wofi --show drun
 bind = $mainMod, return, exec, $terminal
 bind = $mainMod, B, exec, $browser # Open the browser
 bind = $mainMod, E, exec, $fileManager
+{{- if not .caelestia }}
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, M, exec, nwg-bar
+{{- end }}
 
 # Windows
 bind = $mainMod SHIFT, W, killactive,
@@ -88,6 +90,13 @@ bind = $mainMod SHIFT, C, exec, grimblast save area
 # bind = $mainMod SHIFT, B, exec, ~/.config/waybar/launch.sh # Reload waybar
 # bind = $mainMod CTRL, B, exec, ~/.config/waybar/toggle.sh # Toggle waybar
 # bind = $mainMod CTRL, T, exec, ~/.config/waybar/themeswitcher.sh # Open waybar theme switcher
+
+bind = $mainMod, P, global, caelestia:launcher
+{{- if .caelestia }}
+# caelestia
+bind = $mainMod, space, global, caelestia:launcher
+bind = $mainMod, m, global, caelestia:session
+{{- end }}
 
 {{- if .splitMonitorWorkspaces }}
 # Switch workspaces with mainMod + [0-9]

@@ -134,5 +134,9 @@
 
     // RedHat
     "redhat.telemetry.enabled": false,
-    "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls"
+    "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls",
+    "docker.extension.enableComposeLanguageServer": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
 }

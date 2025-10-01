@@ -192,8 +192,10 @@ bind = , mouse_right, workspace, e+1
 bind = , mouse_left, workspace, e-1
 
 # Fn keys
-bind = , XF86MonBrightnessUp, exec, brightnessctl -q s +10% # Increase brightness by 10%
-bind = , XF86MonBrightnessDown, exec, brightnessctl -q s 10%- # Reduce brightness by 10%
+# bind = , XF86MonBrightnessUp, exec, brightnessctl -q s +10% # Increase brightness by 10%
+# bind = , XF86MonBrightnessDown, exec, brightnessctl -q s 10%- # Reduce brightness by 10%
+bind = , XF86MonBrightnessUp, exec, lightctl up
+bind = , XF86MonBrightnessDown, exec, lightctl down
 bind = , XF86AudioRaiseVolume, exec, volumectl -u up 
 bind = , XF86AudioLowerVolume, exec, volumectl -u down 
 bind = , XF86AudioMicMute, exec, volumectl -m toggle-mute
@@ -205,4 +207,6 @@ bind = , XF86AudioPrev, exec, playerctl previous
 bind = , XF86Lock, exec, hyprlock # Open screenlock
 
 bind = , code:238, exec, brightnessctl -d smc::kbd_backlight s +10
-bind = , code:237, exec, brightnessctl -d smc::kbd_backlight s 10- 
+bind = , code:237, exec, brightnessctl -d smc::kbd_backlight s 10-
+
+gesture = 3, horizontal, workspace

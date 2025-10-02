@@ -13,6 +13,7 @@
     "terminal.integrated.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.enableImages": true,
+    
 
     // Editor Settings
     "editor.fontFamily": "'Source Code Pro', 'Symbols Nerd Font Mono', 'monospace', monospace",
@@ -141,5 +142,6 @@
     },
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
-    }
+    },
+    "workbench.activityBar.location": "top"
 }

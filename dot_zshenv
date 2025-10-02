@@ -3,6 +3,13 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
+# Default Editor
+export EDITOR=nvim
+# Default Visual Editor
+[ -n "$DISPLAY" ] && export VISUAL=code || export VISUAL=nvim
+# Default Pager for reading longer files
+export PAGER=less
+
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
 export JAVA_HOME=/usr/lib/jvm/default

@@ -14,7 +14,6 @@ verbose = true
 [data]
   wayland = {{ default false .wayland }}
   nvidia = {{ default false .nvidia }}
-  gitSigning = {{ default false .gitSigning }}
   hy3 = {{ default false .hy3 }}
   hyprexpo = {{ default false .hyprexpo }}
   hyprspace = {{ default false .hyprspace }}
@@ -25,6 +24,12 @@ verbose = true
 
 [data.waybar]
   battery = {{ default false .waybar.battery }}
+
+[data.git]
+  email = {{ (default "" .git.email) | quote }}
+  name = {{ (default "" .git.name) | quote }}
+  enable_signing = {{ default false .git.enable_signing }}
+  signing_key = {{ (default "" .git.signing_key) | quote }}
 
 [data.super_slicer]
   include = {{ default false .super_slicer.include }}

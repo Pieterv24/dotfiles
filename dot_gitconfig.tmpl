@@ -1,8 +1,8 @@
 [user]
-	email = 9167905+Pieterv24@users.noreply.github.com
-	name = Pieter
-{{- if .gitSigning }}
-	signingkey = C44AEAD55BC105EB
+	email = {{ .git.email }}
+	name = {{ .git.name }}
+{{- if .git.enable_signing }}
+	signingkey = {{ .git.signing_key }}
 {{- end }}
 
 [init]
@@ -20,7 +20,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 
-{{ if .gitSigning -}}
+{{ if .git.enable_signing -}}
 [commit]
 	gpgsign = true
 [gpg]

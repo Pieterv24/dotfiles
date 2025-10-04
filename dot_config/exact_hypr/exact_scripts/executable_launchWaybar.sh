@@ -1,10 +1,10 @@
 #!/bin/bash
 # Kill and restart waybar whenever its config files change
-CONFIG_FILES="$HOME/.config/waybar/themes/mine/config.jsonc $HOME/.config/waybar/themes/mine/style.css"
+CONFIG_FILES="$HOME/.config/waybar/config.jsonc $HOME/.config/waybar/style.css"
 trap "killall waybar" EXIT
 while true; do
     logger -i "$0: Starting waybar in the background..."
-    waybar -c ~/.config/waybar/themes/mine/config.jsonc -s ~/.config/waybar/themes/mine/style.css &
+    waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css &
     logger -i "$0: Started waybar PID=$!. Waiting for modifications to ${CONFIG_FILES}..."
     inotifywait -e modify ${CONFIG_FILES} 2>&1 | logger -i
     logger -i "$0: inotifywait returned $?. Killing all waybar processes..."

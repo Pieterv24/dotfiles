@@ -14,7 +14,7 @@ $menu = wofi --show drun
 bind = $mainMod, return, exec, $terminal
 bind = $mainMod, B, exec, $browser # Open the browser
 bind = $mainMod, E, exec, $fileManager
-{{- if not .caelestia }}
+{{- if not .quickshell.caelestia }}
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, M, exec, nwg-bar
 {{- end }}
@@ -92,7 +92,7 @@ bind = $mainMod SHIFT, C, exec, grimblast save area
 # bind = $mainMod CTRL, T, exec, ~/.config/waybar/themeswitcher.sh # Open waybar theme switcher
 
 bind = $mainMod, P, global, caelestia:launcher
-{{- if .caelestia }}
+{{- if .quickshell.caelestia }}
 # caelestia
 bind = $mainMod, space, global, caelestia:launcher
 bind = $mainMod, m, global, caelestia:session

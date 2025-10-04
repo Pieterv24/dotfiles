@@ -2,14 +2,16 @@
 # Autostart
 # ----------------------------------------------------- 
 
+{{- if .waybar.enabled }}
 # Launch waybar
-# exec-once = ~/.config/hypr/scripts/launchWaybar.sh
+exec-once = ~/.config/hypr/scripts/launchWaybar.sh
+{{- end }}
 
 # Launch Quickshell
-{{- if .caelestia }}
-exec-once = qs -c ~/.config/quickshell/caelestia
-{{- else }}
-exec-once = quickshell
+{{- if and .quickshell.caelestia .quickshell.enabled }}
+exec-once = qs -c caelestia
+{{- else if .quickshell.enabled }}
+exec-once = qs
 {{- end }}
 
 # Reload plugins and send notification if something goes wrong
@@ -32,17 +34,17 @@ exec-once= systemctl --user start hyprpolkitagent
 # Run hypridle
 exec-once = hypridle
 
-{{- if not .caelestia }}
+{{- if not .quickshell.caelestia }}
 # Load Dunst Notification Manager
 exec-once = systemctl start --user dunst.service
 {{- end }}
 
-{{- if not .caelestia }}
+{{- if not .quickshell.caelestia }}
 # Using hyprpaper for wallpaper
 exec-once = hyprpaper
 {{- end }}
 
-{{- if not .caelestia }}
+{{- if not .quickshell.caelestia }}
 # Start OSD service
 exec-once = avizo-service
 {{- end }}

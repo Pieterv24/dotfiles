@@ -6,7 +6,8 @@ export XDG_STATE_HOME=$HOME/.local/state
 # Default Editor
 export EDITOR=nvim
 # Default Visual Editor
-[ -n "$DISPLAY" ] && export VISUAL=code || export VISUAL=nvim
+#[ -n "$DISPLAY" ] && export VISUAL=code || export VISUAL=nvim
+export VISUAL=nvim
 # Default Pager for reading longer files
 export PAGER=less
 

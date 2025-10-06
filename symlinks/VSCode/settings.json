@@ -27,10 +27,14 @@
     "editor.cursorBlinking": "phase",
     "editor.linkedEditing": true,
 
+    // Chat Settings
+    "chat.agent.enabled": false,
+
     // Explorer Settings
     "explorer.confirmDragAndDrop": false,
 
     // Workbench Settings
+    "workbench.activityBar.location": "top",
     "workbench.startupEditor": "none",
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "GitHub Dark Default",
@@ -118,6 +122,12 @@
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
 
     // ############################
     // #### Extension Settings ####
@@ -130,18 +140,18 @@
     "vsicons.dontShowNewVersionMessage": true,
 
     // Gitlens
-    "gitlens.showWelcomeOnInstall": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "gitlens.ai.enabled": false,
+    "gitlens.cloudPatches.enabled": false,
     "gitlens.plusFeatures.enabled": false,
 
     // RedHat
     "redhat.telemetry.enabled": false,
+
+    // QMLLS
     "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls",
-    "docker.extension.enableComposeLanguageServer": false,
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "[css]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
-    },
-    "workbench.activityBar.location": "top"
+    "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+
+    // Docker
+    "docker.extension.enableComposeLanguageServer": false
 }

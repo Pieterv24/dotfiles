@@ -2,8 +2,6 @@
 alias ls='eza --icons auto'
 alias ll='ls -la'
 
-alias cat='bat'
-
 alias du='dust'
 
 alias grep='grep --color=auto'

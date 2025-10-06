@@ -3,7 +3,7 @@
 # ----------------------------------------------------- 
 
 plugin {
-  {{- if .hy3 }}
+  {{- if .hyprland.hy3 }}
   hy3 {
     # Docs: https://github.com/outfoxxed/hy3#configuration
     autotile {
@@ -13,7 +13,7 @@ plugin {
     }
   }
   {{- end }}
-  {{- if .hyprexpo }}
+  {{- if .hyprland.hyprexpo }}
   hyprexpo {
     columns = 3
     gap_size = 5
@@ -25,7 +25,7 @@ plugin {
     gesture_positive = true # positive = swipe down. Negative = swipe up.
   }
   {{- end }}
-  {{- if .splitMonitorWorkspaces }}
+  {{- if .hyprland.splitMonitorWorkspaces }}
   split-monitor-workspaces {
     count = 10
     keep_focused = 0

@@ -1,21 +1,30 @@
-workspace = 1, monitor:DP-2, default:true, defaultName:Main, persistent:true
-workspace = 2, monitor:DP-2
-workspace = 3, monitor:DP-2
-workspace = 4, monitor:DP-2
-workspace = 5, monitor:DP-2
-workspace = 6, monitor:DP-2
-workspace = 7, monitor:DP-2
-workspace = 8, monitor:DP-2
-workspace = 9, monitor:DP-2
-workspace = 10, monitor:DP-2, defaultName:Gaming, border:false, rounding:false, gapsout:0, gapsin:0, shadow:false
+{{- $primary_monitor := (index .monitors 0).name }}
+{{- $secondary_monitor := "" }}
+{{- $has_secondary_monitor := gt (len .monitors) 1 }}
+{{- if $has_secondary_monitor}}
+    {{- $secondary_monitor = (index .monitors 1).name }}
+{{- else }}
+    {{- $secondary_monitor = (index .monitors 0).name }}
+{{- end -}}
 
-workspace = 11, monitor:HDMI-A-1, default:true, defaultName:Socials, persistent:true
-workspace = 12, monitor:HDMI-A-1, defaultName:Music, on-created-empty:spotify-launcher
-workspace = 13, monitor:HDMI-A-1 
-workspace = 14, monitor:HDMI-A-1 
-workspace = 15, monitor:HDMI-A-1 
-workspace = 16, monitor:HDMI-A-1 
-workspace = 17, monitor:HDMI-A-1 
-workspace = 18, monitor:HDMI-A-1 
-workspace = 19, monitor:HDMI-A-1 
-workspace = 20, monitor:HDMI-A-1 
+workspace = 1, monitor:{{$primary_monitor}}, default:true, defaultName:Main, persistent:true
+workspace = 2, monitor:{{$primary_monitor}}
+workspace = 3, monitor:{{$primary_monitor}}
+workspace = 4, monitor:{{$primary_monitor}}
+workspace = 5, monitor:{{$primary_monitor}}
+workspace = 6, monitor:{{$primary_monitor}}
+workspace = 7, monitor:{{$primary_monitor}}
+workspace = 8, monitor:{{$primary_monitor}}
+workspace = 9, monitor:{{$primary_monitor}}
+workspace = 10, monitor:{{$primary_monitor}}, defaultName:Gaming, border:false, rounding:false, gapsout:0, gapsin:0, shadow:false
+
+workspace = 11, monitor:{{$secondary_monitor}}, default:true, defaultName:Socials, persistent:true
+workspace = 12, monitor:{{$secondary_monitor}}, defaultName:Music, on-created-empty:spotify-launcher
+workspace = 13, monitor:{{$secondary_monitor}} 
+workspace = 14, monitor:{{$secondary_monitor}} 
+workspace = 15, monitor:{{$secondary_monitor}} 
+workspace = 16, monitor:{{$secondary_monitor}} 
+workspace = 17, monitor:{{$secondary_monitor}} 
+workspace = 18, monitor:{{$secondary_monitor}} 
+workspace = 19, monitor:{{$secondary_monitor}} 
+workspace = 20, monitor:{{$secondary_monitor}} 

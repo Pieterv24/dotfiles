@@ -37,7 +37,7 @@ bind = $mainMod SHIFT, right, movewindow, r
 bind = $mainMod SHIFT, up, movewindow, u
 bind = $mainMod SHIFT, down, movewindow, d
 
-{{- if .hy3 }}
+{{- if .hyprland.hy3 }}
 # Tab control
 bind = $mainMod, T, hy3:makegroup, tab, ephemeral
 bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
@@ -128,7 +128,7 @@ bindl = , XF86AudioPrev, caelestia:mediaPrev
 bindl = , XF86AudioStop, caelestia:mediaStop
 {{- end }}
 
-{{- if .splitMonitorWorkspaces }}
+{{- if .hyprland.splitMonitorWorkspaces }}
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, split-workspace, 1 # Open workspace 1
 bind = $mainMod, 2, split-workspace, 2 # Open workspace 2
@@ -201,10 +201,10 @@ bind = $mainMod SHIFT CTRL, 0, movetoworkspace, 20 # Move active window to works
 
 bind = $mainMod, Tab, workspace, m+1 # Open next workspace
 bind = $mainMod SHIFT, Tab, workspace, m-1 # Open previous workspace
-{{- if .hyprexpo }}
+{{- if .hyprland.hyprexpo }}
 bind = $mainMod CTRL, Tab, hyprexpo:expo, toggle
 {{- end }}
-{{- if .hyprspace }}
+{{- if .hyprland.hyprspace }}
 bind = SUPER, Tab, overview:toggle
 {{- end }}
 
@@ -238,5 +238,3 @@ bind = , XF86Lock, exec, hyprlock # Open screenlock
 
 bind = , code:238, exec, brightnessctl -d smc::kbd_backlight s +10
 bind = , code:237, exec, brightnessctl -d smc::kbd_backlight s 10-
-
-gesture = 3, horizontal, workspace

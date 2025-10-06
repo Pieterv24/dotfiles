@@ -6,8 +6,10 @@
 #        |___/|_|                              
 #  
 
+{{- if .hyprland.debug }}
 # Enable Debug logs
 debug:disable_logs = false
+{{- end }}
 
 # ----------------------------------------------------- 
 # Monitor & Workspaces
@@ -34,9 +36,14 @@ source = ~/.config/hypr/conf/nvidia.conf
 source = ~/.config/hypr/conf/environment.conf
 
 # ----------------------------------------------------- 
-# Keyboard
+# Input
 # ----------------------------------------------------- 
-source = ~/.config/hypr/conf/keyboard.conf
+source = ~/.config/hypr/conf/input.conf
+
+# ----------------------------------------------------- 
+# Gestures
+# ----------------------------------------------------- 
+source = ~/.config/hypr/conf/gestures.conf
 
 # ----------------------------------------------------- 
 # Autostart

@@ -14,12 +14,15 @@ verbose = true
 [data]
   wayland = {{ default false .wayland }}
   nvidia = {{ default false .nvidia }}
-  hy3 = {{ default false .hy3 }}
-  hyprexpo = {{ default false .hyprexpo }}
-  hyprspace = {{ default false .hyprspace }}
-  splitMonitorWorkspaces = {{ default false .splitMonitorWorkspaces }}
   oh_my_posh = {{ default false .oh_my_posh }}
   powerline_go = {{ default false .powerline_go }}
+
+[data.hyprland]
+  debug = {{ default false .hyprland.debug }}
+  hy3 = {{ default false .hyprland.hy3 }}
+  hyprexpo = {{ default false .hyprland.hyprexpo }}
+  hyprspace = {{ default false .hyprland.hyprspace }}
+  splitMonitorWorkspaces = {{ default false .hyprland.splitMonitorWorkspaces }}
 
 [data.waybar]
   enabled = {{ default false .waybar.enabled }}

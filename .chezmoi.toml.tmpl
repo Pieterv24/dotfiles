@@ -48,16 +48,19 @@ verbose = true
   client_cert_location = {{ (default "" .super_slicer.client_cert_location) | quote }}
   client_cert_password = {{ (default "" .super_slicer.client_cert_password) | quote }}
 
+{{ if and .monitors (gt (len .monitors) 0) }}
+  {{- range $index, $element := .monitors }}
 [[data.monitors]]
-  {{- if and .monitors (index .monitors 0) }}
-    name = {{ (default "" (index .monitors 0).name) | quote }}
-    resolution = {{ (default "preferred" (index .monitors 0).resolution) | quote }}
-    position = {{ (default "auto" (index .monitors 0).position) | quote }}
-    scale = {{ (default "1" (index .monitors 0).scale) | quote }}
-  {{- else }}
-    name = ""
-    resolution = "preferred"
-    position = "auto"
-    scale = "1"
-  {{- end }}
+  name = {{ (default "" $element.name) | quote }}
+  resolution = {{ (default "preferred" $element.resolution) | quote }}
+  position = {{ (default "auto" $element.position) | quote }}
+  scale = {{ (default "1" $element.scale) | quote }}
+  {{- end}}
+{{- else }}
+[[data.monitors]]
+  name = ""
+  resolution = "preferred"
+  position = "auto"
+  scale = "1"
+{{- end }}
 

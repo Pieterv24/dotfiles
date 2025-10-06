@@ -15,8 +15,6 @@ alias d="kitten diff"
 alias hg="kitten hyperlinked_grep"
 alias s="kitten ssh"
 
-alias paru="yay"
-
 alias code-executor="code --remote ssh-remote+executor ~/my.code-workspace"
 alias code-chezmoi='code ~/.local/share/chezmoi'
 

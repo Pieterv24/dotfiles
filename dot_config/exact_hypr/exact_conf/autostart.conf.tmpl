@@ -11,7 +11,7 @@ exec-once = ~/.config/hypr/scripts/launchWaybar.sh
 {{- if and .quickshell.caelestia .quickshell.enabled }}
 exec-once = qs -c caelestia
 {{- else if .quickshell.enabled }}
-exec-once = qs
+exec-once = qs -c quickway
 {{- end }}
 
 # Reload plugins and send notification if something goes wrong

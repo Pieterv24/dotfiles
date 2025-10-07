@@ -5,18 +5,28 @@
     "icon": "/usr/share/nwg-bar/images/system-lock-screen.svg"
   },
   {
+    "label": "Hibernate",
+    "exec": "systemctl hibernate || loginctl hibernate",
+    "icon": "/usr/share/nwg-bar/images/system-hibernate.svg"
+  },
+  {
+    "label": "Suspend",
+    "exec": "systemctl suspend || loginctl suspend",
+    "icon": "/usr/share/nwg-bar/images/system-suspend.svg"
+  },
+  {
     "label": "Logout",
-    "exec": "hyprctl dispatch exit",
+    "exec": "hyprctl clients -j | jq -r '.[].pid' | xargs kill; pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER",
     "icon": "/usr/share/nwg-bar/images/system-log-out.svg"
   },
   {
     "label": "Reboot",
-    "exec": "systemctl reboot",
+    "exec": "hyprctl clients -j | jq -r '.[].pid' | xargs kill; systemctl reboot || loginctl reboot",
     "icon": "/usr/share/nwg-bar/images/system-reboot.svg"
   },
   {
     "label": "Shutdown",
-    "exec": "systemctl -i poweroff",
+    "exec": "hyprctl clients -j | jq -r '.[].pid' | xargs kill; systemctl poweroff || loginctl poweroff",
     "icon": "/usr/share/nwg-bar/images/system-shutdown.svg"
   }
 ]

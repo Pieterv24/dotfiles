@@ -26,13 +26,13 @@ exec-once = ~/.config/hypr/scripts/socket2.sh
 
 # Start Polkit
 # exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once= systemctl --user start hyprpolkitagent
+exec-once= systemctl --user start hyprpolkitagent.service
 
 # Start keyring deamon
 # exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 
 # Run hypridle
-exec-once = hypridle
+exec-once = systemctl start --user hypridle.service
 
 {{- if not .quickshell.caelestia }}
 # Load Dunst Notification Manager

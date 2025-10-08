@@ -28,6 +28,40 @@ git() {
 	fi
 }
 
+# Clone AUR helper
+aur-clone() {
+  local mirror_flag=0
+  local package=""
+  local alternative_path=""
+  local args=()
+
+  for arg in "$@"; do
+    if [ "$arg" = "--mirror" ]; then
+      mirror_flag=1
+    elif [ -z "$package" ]; then
+      package="$arg"
+	# Should take second argument as alternative path if provided, should not be a flag
+	elif [ -z "$alternative_path" ] && [[ ! "$arg" =~ ^- ]]; then
+	  alternative_path="$arg"
+    else
+      args+=("$arg")
+    fi
+  done
+
+  if [ -z "$package" ]; then
+    echo "Usage: aur-clone [--mirror] <aur-package> [alternative path] [git clone args...]"
+    return 1
+  fi
+
+  if [ $mirror_flag -eq 1 ]; then
+	echo "Cloning from mirror..."
+	command git clone --branch "$package" --single-branch "https://github.com/archlinux/aur.git" "${alternative_path:-$package}" "${args[@]}"
+  else
+	echo "Cloning from AUR..."
+	command git clone "https://aur.archlinux.org/$package.git" "${alternative_path:-$package}" "${args[@]}"
+  fi
+}
+
 colors() {
 	for x in {0..8}; do 
     for i in {30..37}; do 

@@ -27,9 +27,6 @@
     "editor.cursorBlinking": "phase",
     "editor.linkedEditing": true,
 
-    // Chat Settings
-    "chat.agent.enabled": false,
-
     // Explorer Settings
     "explorer.confirmDragAndDrop": false,
 

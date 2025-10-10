@@ -1,0 +1,4 @@
+export BUN_INSTALL="$HOME/.bun"
+
+typeset -U path
+path=($BUN_INSTALL/bin $path[@])

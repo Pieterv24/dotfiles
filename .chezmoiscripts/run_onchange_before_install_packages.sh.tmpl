@@ -1,0 +1,28 @@
+{{- if and (eq .chezmoi.os "linux") (not (.chezmoi.kernel.osrelease | lower | contains "microsoft")) .package_installation -}}
+
+{{- $installed_packages := splitList "\n" (output "pacman" "-Qq") -}}
+{{- $required_pacman_packages := .packages.pacman -}}
+{{- $required_aur_packages := .packages.aur -}}
+{{- $missing_pacman_packages := list }}
+{{- $missing_aur_packages := list }}
+
+{{- range $index, $element := $required_pacman_packages -}}
+{{-     if not (has $element $installed_packages) -}}
+{{-         $missing_pacman_packages = append $missing_pacman_packages $element -}}
+{{-     end -}}
+{{- end -}}
+
+{{- range $index, $element := $required_aur_packages -}}
+{{-     if not (has $element $installed_packages) -}}
+{{-         $missing_aur_packages = append $missing_aur_packages $element -}}
+{{-     end -}}
+{{- end -}}
+
+#!/bin/sh
+{{- if or (gt (len $missing_aur_packages) 0) (gt (len $missing_pacman_packages) 0) }}
+# Random int for use if packages were removed in between stages: {{ randInt 0 25000}}
+
+yay -S --noconfirm {{ join " " (concat $missing_aur_packages $missing_pacman_packages) }}
+{{- end }}
+
+{{- end }}

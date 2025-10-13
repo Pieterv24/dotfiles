@@ -159,6 +159,10 @@
         {
             "name": "Qt-5.15.17-linux-g++_from_PATH",
             "path": "/usr/bin/qtpaths"
+        },
+        {
+            "name": "Qt-5.15.17-linux-g++_from_PATH",
+            "path": "/usr/bin/qmake"
         }
     ],
     "[astro]": {

@@ -1,5 +1,6 @@
 **/*.src.ini
 symlinks
+system
 .chezmoiscripts/update_superslicer_from_wsl.sh
 .config/hypr/matugen-colors.conf
 

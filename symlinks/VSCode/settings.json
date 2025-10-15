@@ -128,6 +128,9 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
 
     // ############################
     // #### Extension Settings ####
@@ -151,21 +154,14 @@
     // QMLLS
     "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls",
     "qt-qml.qmlls.useQmlImportPathEnvVar": true,
-    
-
-    // Docker
-    "docker.extension.enableComposeLanguageServer": false,
     "qt-core.additionalQtPaths": [
         {
             "name": "Qt-5.15.17-linux-g++_from_PATH",
             "path": "/usr/bin/qtpaths"
-        },
-        {
-            "name": "Qt-5.15.17-linux-g++_from_PATH",
-            "path": "/usr/bin/qmake"
         }
     ],
-    "[astro]": {
-        "editor.defaultFormatter": "astro-build.astro-vscode"
-    }
+    
+
+    // Docker
+    "docker.extension.enableComposeLanguageServer": false
 }

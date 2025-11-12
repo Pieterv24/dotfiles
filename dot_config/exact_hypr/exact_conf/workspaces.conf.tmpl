@@ -5,9 +5,9 @@
     {{- $secondary_monitor = (index .monitors 1).name }}
 {{- else }}
     {{- $secondary_monitor = (index .monitors 0).name }}
-{{- end -}}
+{{- end }}
 
-workspace = 1, monitor:{{$primary_monitor}}, default:true, defaultName:Main, persistent:true
+workspace = 1, monitor:{{$primary_monitor}}, defaultName:Main, default:true, persistent:true
 workspace = 2, monitor:{{$primary_monitor}}
 workspace = 3, monitor:{{$primary_monitor}}
 workspace = 4, monitor:{{$primary_monitor}}
@@ -18,7 +18,7 @@ workspace = 8, monitor:{{$primary_monitor}}
 workspace = 9, monitor:{{$primary_monitor}}
 workspace = 10, monitor:{{$primary_monitor}}, defaultName:Gaming, border:false, rounding:false, gapsout:0, gapsin:0, shadow:false
 
-workspace = 11, monitor:{{$secondary_monitor}}, default:true, defaultName:Socials, persistent:true
+workspace = 11, monitor:{{$secondary_monitor}}, defaultName:Socials, default:true, persistent:true
 workspace = 12, monitor:{{$secondary_monitor}}, defaultName:Music, on-created-empty:spotify-launcher
 workspace = 13, monitor:{{$secondary_monitor}} 
 workspace = 14, monitor:{{$secondary_monitor}} 
@@ -28,3 +28,6 @@ workspace = 17, monitor:{{$secondary_monitor}}
 workspace = 18, monitor:{{$secondary_monitor}} 
 workspace = 19, monitor:{{$secondary_monitor}} 
 workspace = 20, monitor:{{$secondary_monitor}} 
+{{- if $has_secondary_monitor}}
+workspace = m[{{$secondary_monitor}}], gapsin:0, gapsout:0, rounding:false, shadow:false
+{{- end }}

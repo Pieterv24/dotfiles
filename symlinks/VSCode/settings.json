@@ -136,9 +136,6 @@
     // #### Extension Settings ####
     // ############################
 
-    // Spell check settings
-    "cSpell.language": "en,nl",
-
     // VS Icons
     "vsicons.dontShowNewVersionMessage": true,
 

@@ -13,24 +13,4 @@ plugin {
     }
   }
   {{- end }}
-  {{- if .hyprland.hyprexpo }}
-  hyprexpo {
-    columns = 3
-    gap_size = 5
-    bg_col = rgb(111111)
-    workspace_method = first 1 # [center/first] [workspace] e.g. first 1 or center m+1
-
-    enable_gesture = true # laptop touchpad, 4 fingers
-    gesture_distance = 300 # how far is the "max"
-    gesture_positive = true # positive = swipe down. Negative = swipe up.
-  }
-  {{- end }}
-  {{- if .hyprland.splitMonitorWorkspaces }}
-  split-monitor-workspaces {
-    count = 10
-    keep_focused = 0
-    enable_notifications = 0
-    enable_persistent_workspaces = 0
-  }
-  {{- end }}
 }

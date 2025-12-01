@@ -10,5 +10,4 @@ window-decoration = false
 quit-after-last-window-closed = false
 # quit-after-last-window-closed-delay = 5m
 
-# shell-integration-features = no-cursor
-# cursor-style = block
+shell-integration-features = sudo,ssh-terminfo

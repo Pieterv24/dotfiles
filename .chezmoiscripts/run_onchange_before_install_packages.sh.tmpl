@@ -1,4 +1,4 @@
-{{- if and (eq .chezmoi.os "linux") (not (.chezmoi.kernel.osrelease | lower | contains "microsoft")) .package_installation -}}
+{{- if and (eq .chezmoi.os "linux") (not (.chezmoi.kernel.osrelease | lower | contains "microsoft")) (eq .chezmoi.osRelease.id "arch") .package_installation -}}
 
 {{- $installed_packages := splitList "\n" (output "pacman" "-Qq") -}}
 {{- $required_pacman_packages := .packages.pacman -}}

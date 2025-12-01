@@ -3,8 +3,6 @@ chezmoi:template:missing-key=invalid
 progress = true
 verbose = true
 
-pager = "cat"
-
 [git]
   autoCommit = false
   autoPush = false
@@ -43,7 +41,6 @@ pager = "cat"
 
 [data.super_slicer]
   include = {{ default false .super_slicer.include }}
-  windows_path = {{ (default "" .super_slicer.windows_path) | quote }}
   pb_local_address = {{ (default "" .super_slicer.pb_local_address) | quote }}
   pb_address = {{ (default "" .super_slicer.pb_address) | quote }}
   v2_local_address = {{ (default "" .super_slicer.v2_local_address) | quote }}

@@ -1,0 +1,181 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 3
+console_title_template: "{{ .Shell }} in {{ .Folder }}"
+final_space: true
+shell_integration: true
+enable_cursor_positioning: true
+palette:
+  black: "#000000"
+  white: "#FFFFFF"
+  red: "#FF0000"
+  yellow: "#E5E512"
+  green: "#00D900"
+  blue: "#2472c8"
+  magenta: "#bc3fbc"
+  purple: "#8700D7"
+  cyan: "#0FA8CD"
+  gray: "#3A3A3A"
+  dark_green: "#007000"
+  dark_blue: "#0000FF"
+  os_background: p:dark_blue
+  os_foregrount: p:white
+  shell_background: p:blue
+  shell_foregrount: p:white
+  project_background: p:yellow
+  project_foreground: p:black
+  npmrc_background: p:red
+  npmrc_foreground: p:white
+  java_background: p:blue
+  java_foreground: p:white
+  node_background: p:dark_green
+  node_foreground: p:white
+  root_background: p:purple
+  root_foreground: p:red
+  user_background: p:purple
+  user_foreground: p:white
+  path_background: p:cyan
+  path_foreground: p:white
+  timer_background: p:gray
+  timer_foreground: p:white
+  status_background: p:gray
+  status_background_error: p:red
+  status_foreground: p:white
+  git_background: p:yellow
+  git_background_changed: p:green
+  git_background_ahead: "#49416D"
+  git_background_behind: "#7A306C"
+  git_background_caugtup: "#fc0303"
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: os
+        style: diamond
+        trailing_diamond: 
+        foreground: p:os_foreground
+        background: p:os_background
+        template: " {{ .Icon }} "
+      - type: shell
+        style: diamond
+        leading_diamond: <transparent,background></>
+        trailing_diamond: 
+        background: p:shell_background
+        foreground: p:shell_foreground
+        template: "  {{ .Name }} "
+      - type: project
+        style: diamond
+        leading_diamond: <transparent,background></>
+        trailing_diamond: 
+        foreground: p:project_foreground
+        background: p:project_background
+        template: " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }} {{.Version}}{{ end }} {{ if .Name }}{{ .Name }}{{ end }}{{ end }} "
+      - type: java
+        style: diamond
+        leading_diamond: <transparent,background></>
+        trailing_diamond: 
+        background: p:java_background
+        foreground: p:java_foreground
+        template: "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+      - type: node
+        style: diamond
+        leading_diamond: <transparent,background></>
+        trailing_diamond: 
+        background: p:node_background
+        foreground: p:node_foreground
+        template: " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ else }} {{ end }}{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+        properties:
+          fetch_package_manager: true
+          pnpm_icon: 
+          yarn_icon: 
+          npm_icon: 
+          bun_icon: 
+
+  - type: prompt
+    alignment: right
+    segments:
+      - type: git
+        style: diamond
+        leading_diamond: 
+        trailing_diamond: <transparent,background></>
+        foreground: p:black
+        background: p:git_background
+        foreground_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:black{{ end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:white{{ end }}"
+          - "{{ if gt .Ahead 0 }}p:white{{ end }}"
+        background_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:git_background_changed{{ end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git_background_caugtup{{ end }}"
+          - "{{ if gt .Ahead 0 }}p:git_background_ahead{{ end }}"
+          - "{{ if gt .Behind 0 }}p:git_background_behind{{ end }}"
+        template: " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }} "
+        properties:
+          branch_template: "{{ trunc 15 .Branch }}"
+          fetch_status: true
+          branch_icon: " "
+          branch_gone_icon: 󱓌
+          branch_identical_icon: 󱓏
+          no_commits_icon: 
+          mapped_branches: 
+            feat/*: 󱓞
+            bug/*: 󰨰
+            fix/*: 󱁤
+      - type: executiontime
+        style: diamond
+        leading_diamond: 
+        background: p:timer_background
+        foreground: p:timer_foreground
+        template: "  {{ .FormattedMs }} "
+        properties:
+          style: roundrock
+          threshold: 0
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: root
+        style: diamond
+        trailing_diamond: 
+        background: p:root_background
+        foreground: p:root_foreground
+        template: "  "
+      - type: session
+        style: diamond
+        trailing_diamond: 
+        foreground: p:user_foreground
+        background: p:user_background
+        alias: SessionRoot
+        template: " {{ if eq .Segment.Index 0 }}{{ if .SSHSession }}󰢹 {{ .HostName}}@{{ end }}{{ .UserName }}{{ end }} "
+      - type: session
+        style: diamond
+        trailing_diamond: 
+        leading_diamond: <transparent,background></>
+        foreground: p:user_foreground
+        background: p:user_background
+        template: ' {{ if and (gt .Segment.Index 0) (not (.Segments.Contains "SessionRoot")) }}{{ if .SSHSession }}󰢹 {{ .HostName}}@{{ end }}{{ .UserName }}{{ end }} '
+      - type: path
+        style: diamond
+        trailing_diamond: 
+        leading_diamond: <transparent,background></>
+        background: p:path_background
+        foreground: p:path_foreground
+        template: "  {{ .Path }} "
+        properties:
+          style: folder
+      - type: path
+        style: diamond
+        trailing_diamond: 
+        leading_diamond: <transparent,background></>
+        background: p:red
+        foreground: p:path_foreground
+        template: "{{if not .Writable }}  {{end}}"
+      - type: status
+        style: diamond
+        trailing_diamond: 
+        leading_diamond: <transparent,background></>
+        foreground: p:status_foreground
+        background: p:status_background
+        background_templates:
+          - "{{ if .Error }}p:status_background_error{{ end }}"
+        properties:
+          always_enabled: false

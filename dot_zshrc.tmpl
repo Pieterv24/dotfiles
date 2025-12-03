@@ -49,10 +49,10 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-{{- if  .oh_my_posh }}
+{{- if  .zsh.oh_my_posh }}
 [ -f ~/.zsh-config/oh-my-posh ] && source ~/.zsh-config/oh-my-posh
 {{- end }}
-{{- if .powerline_go }}
+{{- if .zsh.powerline_go }}
 [ -f ~/.zsh-config/powerline-go ] && source ~/.zsh-config/powerline-go
 {{- end }}
 [ -f ~/.zsh-config/aliases ] && source ~/.zsh-config/aliases

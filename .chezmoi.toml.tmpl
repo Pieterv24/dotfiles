@@ -14,9 +14,11 @@ verbose = true
 [data]
   wayland = {{ default false .wayland }}
   nvidia = {{ default false .nvidia }}
-  oh_my_posh = {{ default false .oh_my_posh }}
-  powerline_go = {{ default false .powerline_go }}
   package_installation = {{ default false .package_installation }}
+
+[data.zsh]
+  oh_my_posh = {{ default false .zsh.oh_my_posh }}
+  powerline_go = {{ default false .zsh.powerline_go }}
 
 [data.hyprland]
   debug = {{ default false .hyprland.debug }}

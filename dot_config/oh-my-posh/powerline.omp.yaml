@@ -145,14 +145,14 @@ blocks:
         foreground: p:user_foreground
         background: p:user_background
         alias: SessionRoot
-        template: " {{ if eq .Segment.Index 0 }}{{ if .SSHSession }}󰢹 {{ .HostName}}@{{ end }}{{ .UserName }}{{ end }} "
+        template: " {{ if eq .Segment.Index 0 }}{{ if .SSHSession }}󰢹 {{ .UserName }}@{{ .HostName}}{{ else }}{{ .UserName }}{{ end }}{{ end }} "
       - type: session
         style: diamond
         trailing_diamond: 
         leading_diamond: <transparent,background></>
         foreground: p:user_foreground
         background: p:user_background
-        template: ' {{ if and (gt .Segment.Index 0) (not (.Segments.Contains "SessionRoot")) }}{{ if .SSHSession }}󰢹 {{ .HostName}}@{{ end }}{{ .UserName }}{{ end }} '
+        template: ' {{ if and (gt .Segment.Index 0) (not (.Segments.Contains "SessionRoot")) }}{{ if .SSHSession }}󰢹 {{ .UserName }}@{{ .HostName}}{{ else }}{{ .UserName }}{{ end }}{{ end }} '
       - type: path
         style: diamond
         trailing_diamond: 

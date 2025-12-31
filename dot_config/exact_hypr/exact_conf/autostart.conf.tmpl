@@ -40,11 +40,6 @@ exec-once = systemctl start --user dunst.service
 {{- end }}
 
 {{- if not .quickshell.caelestia }}
-# Using hyprpaper for wallpaper
-exec-once = hyprpaper
-{{- end }}
-
-{{- if not .quickshell.caelestia }}
 # Start OSD service
 exec-once = avizo-service
 {{- end }}

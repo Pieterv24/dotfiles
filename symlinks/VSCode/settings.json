@@ -55,6 +55,9 @@
     // Debug settings
     "debug.allowBreakpointsEverywhere": true,
 
+    // Github
+    "github.copilot.nextEditSuggestions.enabled": true,
+
     // Color settings
     "editor.tokenColorCustomizations": {
         "[GitHub Dark Default]": {

@@ -8,7 +8,11 @@ $mainMod = ALT
 $terminal = ghostty +new-window
 $browser = firefox-developer-edition
 $fileManager = nautilus
+{{- if not .hyprland.hyprlauncher }}
 $menu = wofi --show drun
+{{- else }}
+$menu = hyprlauncher
+{{- end }}
 
 # Applications
 bind = $mainMod, return, exec, $terminal

@@ -1,0 +1,2 @@
+typeset -U path
+path=(/opt/android-sdk/platform-tools/ $path[@])

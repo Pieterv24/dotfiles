@@ -51,7 +51,6 @@ packages:
   - ttf-nerd-fonts-symbols-mono
   - ttf-ubuntu-font-family
   - uwsm
-  - vi
   - vim
   - wget
   - wl-clipboard

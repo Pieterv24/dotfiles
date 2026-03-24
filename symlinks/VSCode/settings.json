@@ -107,6 +107,7 @@
         "*.ini.tmpl": "ini",
         "*.toml.tmpl": "toml",
         "*.conf.tmpl": "properties",
+        "*.conf": "properties",
         ".*ignore": "ignore",
         "**/.i3/config": "i3",
         "**/i3/config": "i3"

@@ -39,7 +39,7 @@
 | shell | [zsh]() | |
 | prompt | [oh-my-posh]() | |
 | ls | [eza]() | better ls |
-| du | [dust]()/[duf]() | better du |
+| du | [dust]()() | better du |
 | fastfetch | [fastfetch]() | |
 | jq | [jq]() | |
 | yq | [yq]() | |

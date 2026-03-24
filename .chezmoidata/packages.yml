@@ -34,7 +34,6 @@ packages:
   - inotify-tools
   - jq
   - nano
-  - neovim
   - noto-fonts
   - noto-fonts-cjk
   - noto-fonts-emoji

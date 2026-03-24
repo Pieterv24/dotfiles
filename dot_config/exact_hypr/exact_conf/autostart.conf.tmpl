@@ -9,7 +9,7 @@ exec-once = ~/.config/hypr/scripts/launchWaybar.sh
 
 # Launch Quickshell
 {{- if and .quickshell.noctalia .quickshell.enabled }}
-exec-once = qs -c noctalia ?
+exec-once = qs -c noctalia-shell
 {{- else if .quickshell.enabled }}
 exec-once = qs -c quickway
 {{- end }}
@@ -31,15 +31,18 @@ exec-once= systemctl --user start hyprpolkitagent.service
 # Start keyring deamon
 # exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 
+{{- if not .quickshell.noctalia }}
 # Run hypridle
 exec-once = systemctl start --user hypridle.service
 
-{{- if not .quickshell.noctalia }}
 # Load Dunst Notification Manager
 exec-once = systemctl start --user dunst.service
 
 # Start OSD service
 exec-once = avizo-service
+
+# Run hyprpaper
+exec-once = systemctl start --user hyprpaper.service
 {{- end }}
 
 # Setup clipboard

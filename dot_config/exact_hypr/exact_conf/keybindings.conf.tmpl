@@ -18,7 +18,7 @@ $menu = hyprlauncher
 bind = $mainMod, return, exec, $terminal
 bind = $mainMod, B, exec, $browser # Open the browser
 bind = $mainMod, E, exec, $fileManager
-{{- if not .quickshell.caelestia }}
+{{- if not .quickshell.noctalia }}
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, M, exec, wlogout
 {{- end }}
@@ -71,42 +71,6 @@ bind = $mainMod, L, exec, loginctl lock-session
 # Take screenshot
 bind = $mainMod, C, exec, grimblast copy area
 bind = $mainMod SHIFT, C, exec, grimblast save area
-
-{{- if .quickshell.caelestia }}
-# caelestia
-# Launcher
-bindi = $mainMod, space, caelestia:launcher
-bindin = $mainMod, catchall, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:272, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:273, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:274, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:275, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:276, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:277, caelestia:launcherInterrupt
-bindin = $mainMod, mouse_up, caelestia:launcherInterrupt
-bindin = $mainMod, mouse_down, caelestia:launcherInterrupt
-
-# Misc
-bind = $kbSession, caelestia:session
-bindl = $kbClearNotifs, caelestia:clearNotifs
-bind = $kbShowPanels, caelestia:showall
-# bind = $kbLock, caelestia:lock
-
-# Restore lock
-# bindl = $kbRestoreLock, exec, caelestia shell -d
-# bindl = $kbRestoreLock, caelestia:lock
-
-# Brightness
-bindl = , XF86MonBrightnessUp, caelestia:brightnessUp
-bindl = , XF86MonBrightnessDown, caelestia:brightnessDown
-
-# Media
-bindl = , XF86AudioPlay, caelestia:mediaToggle
-bindl = , XF86AudioPause, caelestia:mediaToggle
-bindl = , XF86AudioNext, caelestia:mediaNext
-bindl = , XF86AudioPrev, caelestia:mediaPrev
-bindl = , XF86AudioStop, caelestia:mediaStop
-{{- end }}
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1 # Open workspace 1

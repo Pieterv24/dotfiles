@@ -3,9 +3,3 @@ README.md
 symlinks
 system
 .config/hypr/matugen-colors.conf
-
-{{- if not .super_slicer.include }}
-.config/SuperSlicer
-.config/SuperSlicer/
-.config/SuperSlicer/**/*
-{{- end -}}

@@ -32,22 +32,13 @@ verbose = true
 
 [data.quickshell]
   enabled = {{ default false .quickshell.enabled }}
-  caelestia = {{ default false .quickshell.caelestia }}
+  noctalia = {{ default false .quickshell.noctalia }}
 
 [data.git]
   email = {{ (default "" .git.email) | quote }}
   name = {{ (default "" .git.name) | quote }}
   enable_signing = {{ default false .git.enable_signing }}
   signing_key = {{ (default "" .git.signing_key) | quote }}
-
-[data.super_slicer]
-  include = {{ default false .super_slicer.include }}
-  pb_local_address = {{ (default "" .super_slicer.pb_local_address) | quote }}
-  pb_address = {{ (default "" .super_slicer.pb_address) | quote }}
-  v2_local_address = {{ (default "" .super_slicer.v2_local_address) | quote }}
-  v2_address = {{ (default "" .super_slicer.v2_address) | quote }}
-  client_cert_location = {{ (default "" .super_slicer.client_cert_location) | quote }}
-  client_cert_password = {{ (default "" .super_slicer.client_cert_password) | quote }}
 
 {{ if and .monitors (gt (len .monitors) 0) }}
   {{- range $index, $element := .monitors }}

@@ -8,8 +8,8 @@ exec-once = ~/.config/hypr/scripts/launchWaybar.sh
 {{- end }}
 
 # Launch Quickshell
-{{- if and .quickshell.caelestia .quickshell.enabled }}
-exec-once = qs -c caelestia
+{{- if and .quickshell.noctalia .quickshell.enabled }}
+exec-once = qs -c noctalia ?
 {{- else if .quickshell.enabled }}
 exec-once = qs -c quickway
 {{- end }}
@@ -34,12 +34,10 @@ exec-once= systemctl --user start hyprpolkitagent.service
 # Run hypridle
 exec-once = systemctl start --user hypridle.service
 
-{{- if not .quickshell.caelestia }}
+{{- if not .quickshell.noctalia }}
 # Load Dunst Notification Manager
 exec-once = systemctl start --user dunst.service
-{{- end }}
 
-{{- if not .quickshell.caelestia }}
 # Start OSD service
 exec-once = avizo-service
 {{- end }}

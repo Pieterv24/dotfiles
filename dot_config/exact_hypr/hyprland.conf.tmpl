@@ -59,7 +59,11 @@ source = ~/.config/hypr/conf/autoshutdown.conf
 # Load configuration files
 # ----------------------------------------------------- 
 source = ~/.config/hypr/conf/window.conf
+{{- if .quickshell.noctalia }}
+source = ~/.config/hypr/noctalia/decoration.conf
+{{- else }}
 source = ~/.config/hypr/conf/decoration.conf
+{{- end }}
 source = ~/.config/hypr/conf/layout.conf
 source = ~/.config/hypr/conf/plugin.conf
 source = ~/.config/hypr/conf/misc.conf

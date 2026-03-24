@@ -7,7 +7,6 @@ packages:
   - chezmoi_modify_manager
   - oh-my-posh
   - projecteur-git
-  - quickshell-git
   - ttf-material-symbols-variable-git
   - ttf-twemoji
   - vial-appimage

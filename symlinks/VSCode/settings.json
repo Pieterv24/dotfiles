@@ -106,6 +106,7 @@
     "files.associations": {
         "*.ini.tmpl": "ini",
         "*.toml.tmpl": "toml",
+        "*.conf.tmpl": "properties",
         ".*ignore": "ignore",
         "**/.i3/config": "i3",
         "**/i3/config": "i3"
@@ -160,7 +161,6 @@
             "path": "/usr/bin/qtpaths"
         }
     ],
-    
 
     // Docker
     "docker.extension.enableComposeLanguageServer": false

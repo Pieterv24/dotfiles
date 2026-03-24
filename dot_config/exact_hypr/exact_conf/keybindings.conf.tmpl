@@ -13,14 +13,22 @@ $menu = wofi --show drun
 {{- else }}
 $menu = hyprlauncher
 {{- end }}
+{{- if .quickshell.noctalia }}
+$noc_ipc = qs -c noctalia-shell ipc call
+{{- end }}
 
 # Applications
 bind = $mainMod, return, exec, $terminal
 bind = $mainMod, B, exec, $browser # Open the browser
 bind = $mainMod, E, exec, $fileManager
-{{- if not .quickshell.caelestia }}
+{{- if not .quickshell.noctalia }}
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, M, exec, wlogout
+{{- else }}
+bind = $mainMod, space, exec, $noc_ipc launcher toggle
+bind = $mainMod, S, exec, $noc_ipc controlCenter toggle
+bind = $mainMod, comma, exec, $noc_ipc settings toggle
+bind = $mainMod, M, exec, $noc_ipc sessionMenu toggle
 {{- end }}
 
 # Windows
@@ -71,42 +79,6 @@ bind = $mainMod, L, exec, loginctl lock-session
 # Take screenshot
 bind = $mainMod, C, exec, grimblast copy area
 bind = $mainMod SHIFT, C, exec, grimblast save area
-
-{{- if .quickshell.caelestia }}
-# caelestia
-# Launcher
-bindi = $mainMod, space, caelestia:launcher
-bindin = $mainMod, catchall, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:272, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:273, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:274, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:275, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:276, caelestia:launcherInterrupt
-bindin = $mainMod, mouse:277, caelestia:launcherInterrupt
-bindin = $mainMod, mouse_up, caelestia:launcherInterrupt
-bindin = $mainMod, mouse_down, caelestia:launcherInterrupt
-
-# Misc
-bind = $kbSession, caelestia:session
-bindl = $kbClearNotifs, caelestia:clearNotifs
-bind = $kbShowPanels, caelestia:showall
-# bind = $kbLock, caelestia:lock
-
-# Restore lock
-# bindl = $kbRestoreLock, exec, caelestia shell -d
-# bindl = $kbRestoreLock, caelestia:lock
-
-# Brightness
-bindl = , XF86MonBrightnessUp, caelestia:brightnessUp
-bindl = , XF86MonBrightnessDown, caelestia:brightnessDown
-
-# Media
-bindl = , XF86AudioPlay, caelestia:mediaToggle
-bindl = , XF86AudioPause, caelestia:mediaToggle
-bindl = , XF86AudioNext, caelestia:mediaNext
-bindl = , XF86AudioPrev, caelestia:mediaPrev
-bindl = , XF86AudioStop, caelestia:mediaStop
-{{- end }}
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1 # Open workspace 1
@@ -174,19 +146,30 @@ bind = , mouse_right, workspace, e+1
 bind = , mouse_left, workspace, e-1
 
 # Fn keys
-# bind = , XF86MonBrightnessUp, exec, brightnessctl -q s +10% # Increase brightness by 10%
-# bind = , XF86MonBrightnessDown, exec, brightnessctl -q s 10%- # Reduce brightness by 10%
-bind = , XF86MonBrightnessUp, exec, lightctl up
-bind = , XF86MonBrightnessDown, exec, lightctl down
+{{- if .quickshell.noctalia }}
+bindel = , XF86AudioRaiseVolume, exec, $noc_ipc volume increase
+bindel = , XF86AudioLowerVolume, exec, $noc_ipc volume decrease
+bindl = , XF86AudioMute, exec, $noc_ipc volume muteOutput
+bindel = , XF86MonBrightnessUp, exec, $noc_ipc brightness increase
+bindel = , XF86MonBrightnessDown, exec, $noc_ipc brightness decrease
+bindl = , XF86AudioMicMute, exec, $noc_ipc volume muteInput
+bindl = , XF86AudioPlay, exec, $noc_ipc media play
+bindl = , XF86AudioPause, exec, $noc_ipc media pause
+bindl = , XF86AudioNext, exec, $noc_ipc media next
+bindl = , XF86AudioPrev, exec, $noc_ipc media previous
+bind = , XF86Lock, exec, $noc_ipc lockScreen lock
+{{- else }}
 bind = , XF86AudioRaiseVolume, exec, volumectl -u up 
 bind = , XF86AudioLowerVolume, exec, volumectl -u down 
-bind = , XF86AudioMicMute, exec, volumectl -m toggle-mute
 bind = , XF86AudioMute, exec, volumectl toggle-mute
+bind = , XF86MonBrightnessUp, exec, lightctl up
+bind = , XF86MonBrightnessDown, exec, lightctl down
+bind = , XF86AudioMicMute, exec, volumectl -m toggle-mute
 bind = , XF86AudioPlay, exec, playerctl play-pause
 bind = , XF86AudioPause, exec, playerctl play-pause
 bind = , XF86AudioNext, exec, playerctl next
 bind = , XF86AudioPrev, exec, playerctl previous
 bind = , XF86Lock, exec, hyprlock # Open screenlock
-
+{{- end }}
 bind = , code:238, exec, brightnessctl -d smc::kbd_backlight s +10
 bind = , code:237, exec, brightnessctl -d smc::kbd_backlight s 10-

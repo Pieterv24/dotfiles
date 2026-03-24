@@ -8,8 +8,8 @@ exec-once = ~/.config/hypr/scripts/launchWaybar.sh
 {{- end }}
 
 # Launch Quickshell
-{{- if and .quickshell.caelestia .quickshell.enabled }}
-exec-once = qs -c caelestia
+{{- if and .quickshell.noctalia .quickshell.enabled }}
+exec-once = qs -c noctalia-shell
 {{- else if .quickshell.enabled }}
 exec-once = qs -c quickway
 {{- end }}
@@ -25,23 +25,23 @@ exec-once = ~/.config/hypr/scripts/xdg.sh
 exec-once = ~/.config/hypr/scripts/socket2.sh
 
 # Start Polkit
-# exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once= systemctl --user start hyprpolkitagent.service
 
 # Start keyring deamon
 # exec-once = /usr/bin/gnome-keyring-daemon --start --components = secrets,pkcs11
 
+{{- if not .quickshell.noctalia }}
 # Run hypridle
 exec-once = systemctl start --user hypridle.service
 
-{{- if not .quickshell.caelestia }}
 # Load Dunst Notification Manager
 exec-once = systemctl start --user dunst.service
-{{- end }}
 
-{{- if not .quickshell.caelestia }}
 # Start OSD service
 exec-once = avizo-service
+
+# Run hyprpaper
+exec-once = systemctl start --user hyprpaper.service
 {{- end }}
 
 # Setup clipboard

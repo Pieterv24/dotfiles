@@ -16,6 +16,8 @@ alias s="kitten ssh"
 alias code-executor="code --remote ssh-remote+executor ~/my.code-workspace"
 alias code-chezmoi='code ~/.local/share/chezmoi'
 
+alias nvrun="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+
 code-remote() {
   command code --remote "ssh-remote+$1" "${2:-.}"
 }

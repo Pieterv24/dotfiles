@@ -35,7 +35,6 @@ bind = $mainMod, M, exec, $noc_ipc sessionMenu toggle
 bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, F, fullscreen # Set active window to fullscreen
 bind = $mainMod, F, togglefloating # Toggle active windows into floating mode
-bind = $mainMod, J, togglesplit # Toggle split
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l # Move focus left
@@ -59,19 +58,21 @@ bindn = , mouse:272, hy3:focustab, mouse
 bind = $mainMod, Z, hy3:changegroup, opposite
 bind = $mainMod, H, hy3:makegroup, h, ephemeral
 bind = $mainMod, V, hy3:makegroup, v, ephemeral
+{{- else }}
+bind = $mainMod, J, togglesplit # Toggle split
+bind = $mainMod, K, swapsplit # Swapsplit
 {{- end }}
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow # Move window with the mouse
 bindm = $mainMod, mouse:273, resizewindow # Resize window with the mouse
 
-bind = $mainMod SHIFT, right, resizeactive, 100 0 # Increase window width with keyboard
-bind = $mainMod SHIFT, left, resizeactive, -100 0 # Reduce window width with keyboard
-bind = $mainMod SHIFT, down, resizeactive, 0 100 # Increase window height with keyboard
-bind = $mainMod SHIFT, up, resizeactive, 0 -100 # Reduce window height with keyboard
+bind = CTRL SHIFT, right, resizeactive, 100 0 # Increase window width with keyboard
+bind = CTRL SHIFT, left, resizeactive, -100 0 # Reduce window width with keyboard
+bind = CTRL SHIFT, down, resizeactive, 0 100 # Increase window height with keyboard
+bind = CTRL SHIFT, up, resizeactive, 0 -100 # Reduce window height with keyboard
 
 bind = $mainMod, G, togglegroup # Toggle window group
-bind = $mainMod, K, swapsplit # Swapsplit
 
 # Actions
 bind = $mainMod, L, exec, loginctl lock-session

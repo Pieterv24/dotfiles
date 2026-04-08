@@ -1,9 +1,10 @@
-# ----------------------------------------------------- 
-# Key bindings
-# name: "Default"
-# ----------------------------------------------------- 
 
-# SUPER KEY
+# -----------------------------------------------------
+# Key bindings (Logical Order)
+# name: "Default"
+# -----------------------------------------------------
+
+# --- Variables ---
 $mainMod = ALT
 $terminal = ghostty +new-window
 $browser = firefox-developer-edition
@@ -17,70 +18,53 @@ $menu = hyprlauncher
 $noc_ipc = qs -c noctalia-shell ipc call
 {{- end }}
 
-# Applications
+# --- Application Launchers ---
 bind = $mainMod, return, exec, $terminal
 bind = $mainMod, B, exec, $browser # Open the browser
 bind = $mainMod, E, exec, $fileManager
 {{- if not .quickshell.noctalia }}
 bind = $mainMod, space, exec, $menu
 bind = $mainMod, M, exec, wlogout
+bind = $mainMod, L, exec, loginctl lock-session
 {{- else }}
 bind = $mainMod, space, exec, $noc_ipc launcher toggle
 bind = $mainMod, S, exec, $noc_ipc controlCenter toggle
 bind = $mainMod, comma, exec, $noc_ipc settings toggle
 bind = $mainMod, M, exec, $noc_ipc sessionMenu toggle
+bind = $mainMod, L, exec, $non_ipc lockScreen lock
 {{- end }}
 
-# Windows
+# --- Window Actions ---
 bind = $mainMod SHIFT, W, killactive,
 bind = $mainMod SHIFT, F, fullscreen # Set active window to fullscreen
 bind = $mainMod, F, togglefloating # Toggle active windows into floating mode
-bind = $mainMod, J, togglesplit # Toggle split
+bind = $mainMod, G, togglegroup # Toggle window group
 
-# Move focus with mainMod + arrow keys
+# --- Focus/Move Window ---
 bind = $mainMod, left, movefocus, l # Move focus left
 bind = $mainMod, right, movefocus, r # Move focus right
 bind = $mainMod, up, movefocus, u # Move focus up
 bind = $mainMod, down, movefocus, d # Move focus down
-
-# Move window with mainMod + Shift + Arrow keys
 bind = $mainMod SHIFT, left, movewindow, l
 bind = $mainMod SHIFT, right, movewindow, r
 bind = $mainMod SHIFT, up, movewindow, u
 bind = $mainMod SHIFT, down, movewindow, d
 
-{{- if .hyprland.hy3 }}
-# Tab control
-bind = $mainMod, T, hy3:makegroup, tab, ephemeral
-bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
-bindn = , mouse:272, hy3:focustab, mouse
-
-# Layout control
-bind = $mainMod, Z, hy3:changegroup, opposite
-bind = $mainMod, H, hy3:makegroup, h, ephemeral
-bind = $mainMod, V, hy3:makegroup, v, ephemeral
-{{- end }}
-
-# Move/resize windows with mainMod + LMB/RMB and dragging
+# --- Move/Resize with Mouse ---
 bindm = $mainMod, mouse:272, movewindow # Move window with the mouse
 bindm = $mainMod, mouse:273, resizewindow # Resize window with the mouse
 
-bind = $mainMod SHIFT, right, resizeactive, 100 0 # Increase window width with keyboard
-bind = $mainMod SHIFT, left, resizeactive, -100 0 # Reduce window width with keyboard
-bind = $mainMod SHIFT, down, resizeactive, 0 100 # Increase window height with keyboard
-bind = $mainMod SHIFT, up, resizeactive, 0 -100 # Reduce window height with keyboard
+# --- Resize with Keyboard ---
+bind = CTRL SHIFT, right, resizeactive, 100 0 # Increase window width with keyboard
+bind = CTRL SHIFT, left, resizeactive, -100 0 # Reduce window width with keyboard
+bind = CTRL SHIFT, down, resizeactive, 0 100 # Increase window height with keyboard
+bind = CTRL SHIFT, up, resizeactive, 0 -100 # Reduce window height with keyboard
 
-bind = $mainMod, G, togglegroup # Toggle window group
-bind = $mainMod, K, swapsplit # Swapsplit
-
-# Actions
-bind = $mainMod, L, exec, loginctl lock-session
-
-# Take screenshot
+# --- Screenshot ---
 bind = $mainMod, C, exec, grimblast copy area
 bind = $mainMod SHIFT, C, exec, grimblast save area
 
-# Switch workspaces with mainMod + [0-9]
+# --- Workspace Navigation ---
 bind = $mainMod, 1, workspace, 1 # Open workspace 1
 bind = $mainMod, 2, workspace, 2 # Open workspace 2
 bind = $mainMod, 3, workspace, 3 # Open workspace 3
@@ -91,7 +75,6 @@ bind = $mainMod, 7, workspace, 7 # Open workspace 7
 bind = $mainMod, 8, workspace, 8 # Open workspace 8
 bind = $mainMod, 9, workspace, 9 # Open workspace 9
 bind = $mainMod, 0, workspace, 10 # Open workspace 10
-
 bind = $mainMod CTRL, 1, workspace, 11 # Open workspace 11
 bind = $mainMod CTRL, 2, workspace, 12 # Open workspace 12
 bind = $mainMod CTRL, 3, workspace, 13 # Open workspace 13
@@ -102,19 +85,16 @@ bind = $mainMod CTRL, 7, workspace, 17 # Open workspace 17
 bind = $mainMod CTRL, 8, workspace, 18 # Open workspace 18
 bind = $mainMod CTRL, 9, workspace, 19 # Open workspace 19
 bind = $mainMod CTRL, 0, workspace, 20 # Open workspace 20
-
-# Move active window to a workspace with mainMod + SHIFT + [0-9]
-bind = $mainMod SHIFT, 1, movetoworkspace, 1 # Move active window to workspace 11
-bind = $mainMod SHIFT, 2, movetoworkspace, 2 # Move active window to workspace 12
-bind = $mainMod SHIFT, 3, movetoworkspace, 3 # Move active window to workspace 13
-bind = $mainMod SHIFT, 4, movetoworkspace, 4 # Move active window to workspace 14
-bind = $mainMod SHIFT, 5, movetoworkspace, 5 # Move active window to workspace 15
-bind = $mainMod SHIFT, 6, movetoworkspace, 6 # Move active window to workspace 16
-bind = $mainMod SHIFT, 7, movetoworkspace, 7 # Move active window to workspace 17
-bind = $mainMod SHIFT, 8, movetoworkspace, 8 # Move active window to workspace 18
-bind = $mainMod SHIFT, 9, movetoworkspace, 9 # Move active window to workspace 19
-bind = $mainMod SHIFT, 0, movetoworkspace, 10 # Move active window to workspace 20
-
+bind = $mainMod SHIFT, 1, movetoworkspace, 1 # Move active window to workspace 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2 # Move active window to workspace 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3 # Move active window to workspace 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4 # Move active window to workspace 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5 # Move active window to workspace 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6 # Move active window to workspace 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7 # Move active window to workspace 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8 # Move active window to workspace 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9 # Move active window to workspace 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10 # Move active window to workspace 10
 bind = $mainMod SHIFT CTRL, 1, movetoworkspace, 11 # Move active window to workspace 11
 bind = $mainMod SHIFT CTRL, 2, movetoworkspace, 12 # Move active window to workspace 12
 bind = $mainMod SHIFT CTRL, 3, movetoworkspace, 13 # Move active window to workspace 13
@@ -125,27 +105,36 @@ bind = $mainMod SHIFT CTRL, 7, movetoworkspace, 17 # Move active window to works
 bind = $mainMod SHIFT CTRL, 8, movetoworkspace, 18 # Move active window to workspace 18
 bind = $mainMod SHIFT CTRL, 9, movetoworkspace, 19 # Move active window to workspace 19
 bind = $mainMod SHIFT CTRL, 0, movetoworkspace, 20 # Move active window to workspace 20
-
 bind = $mainMod, Tab, workspace, m+1 # Open next workspace
 bind = $mainMod SHIFT, Tab, workspace, m-1 # Open previous workspace
 {{- if .hyprland.hyprspace }}
 bind = SUPER, Tab, overview:toggle
 {{- end }}
-
-# Move through existing workspaces with SUPER + L/R
 bind = SUPER, left, workspace, -1
 bind = SUPER, right, workspace, +1
-
-# Scroll through existing workspaces with mainMod + scroll
 bind = $mainMod, mouse_down, workspace, e+1 # Open next workspace
 bind = $mainMod, mouse_up, workspace, e-1 # Open previous workspace
 bind = $mainMod CTRL, down, workspace, empty # Open the next empty workspace
-
-# Scroll through existing workspaces with middle L/R action
 bind = , mouse_right, workspace, e+1
 bind = , mouse_left, workspace, e-1
 
-# Fn keys
+# --- Hy3-specific Keybinds ---
+{{- if .hyprland.hy3 }}
+# Tab control
+bind = $mainMod, T, hy3:makegroup, tab, ephemeral
+bind = $mainMod SHIFT, T, hy3:changegroup, toggletab
+bindn = , mouse:272, hy3:focustab, mouse
+# Layout control
+bind = $mainMod, Z, hy3:changegroup, opposite
+bind = $mainMod, H, hy3:makegroup, h, ephemeral
+bind = $mainMod, V, hy3:makegroup, v, ephemeral
+{{- else }}
+# --- Dwindle-specific Keybinds ---
+bind = $mainMod, J, togglesplit # Toggle split
+bind = $mainMod, K, swapsplit # Swapsplit
+{{- end }}
+
+# --- Function Keys (Volume, Brightness, Media, Lock) ---
 {{- if .quickshell.noctalia }}
 bindel = , XF86AudioRaiseVolume, exec, $noc_ipc volume increase
 bindel = , XF86AudioLowerVolume, exec, $noc_ipc volume decrease
@@ -159,8 +148,8 @@ bindl = , XF86AudioNext, exec, $noc_ipc media next
 bindl = , XF86AudioPrev, exec, $noc_ipc media previous
 bind = , XF86Lock, exec, $noc_ipc lockScreen lock
 {{- else }}
-bind = , XF86AudioRaiseVolume, exec, volumectl -u up 
-bind = , XF86AudioLowerVolume, exec, volumectl -u down 
+bind = , XF86AudioRaiseVolume, exec, volumectl -u up
+bind = , XF86AudioLowerVolume, exec, volumectl -u down
 bind = , XF86AudioMute, exec, volumectl toggle-mute
 bind = , XF86MonBrightnessUp, exec, lightctl up
 bind = , XF86MonBrightnessDown, exec, lightctl down

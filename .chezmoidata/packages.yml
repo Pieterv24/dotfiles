@@ -1,10 +1,11 @@
 packages:
   aur:
-  - avizo
   - breeze-default-cursor-theme
   - bun-bin
   - catppuccin-sddm-theme-macchiato
   - chezmoi_modify_manager
+  - noctalia-shell
+  - noctalia-qs
   - oh-my-posh
   - projecteur-git
   - ttf-material-symbols-variable-git
@@ -12,23 +13,18 @@ packages:
   - vial-appimage
   - visual-studio-code-bin
   - wl-clip-persist-git
-  - wlogout
   - yay
   pacman:
   - adobe-source-code-pro-fonts
   - brightnessctl
   - chezmoi
-  - dunst
   - easyeffects
   - element-desktop
   - eza
   - ghostty
   - git
   - gnome-keyring
-  - hypridle
   - hyprland
-  - hyprlock
-  - hyprpaper
   - hyprpolkitagent
   - hyprwayland-scanner
   - inotify-tools
@@ -52,6 +48,5 @@ packages:
   - vim
   - wget
   - wl-clipboard
-  - wofi
   - yq
   - zsh

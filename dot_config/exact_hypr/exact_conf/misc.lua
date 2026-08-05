@@ -1,0 +1,7 @@
+hl.config({
+  misc = {
+    disable_hyprland_logo = true,
+    disable_splash_rendering = false,
+    initial_workspace_tracking = 1,
+  },
+})

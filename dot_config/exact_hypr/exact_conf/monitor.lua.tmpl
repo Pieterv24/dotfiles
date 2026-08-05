@@ -1,0 +1,11 @@
+{{- /* Get monitor info from chezmoi config file */ -}}
+{{- range $index, $element := .monitors }}
+  {{- if and $element.name $element.resolution $element.position $element.scale }}
+hl.monitor({
+  output = "{{ $element.name }}",
+  mode = "{{ $element.resolution }}",
+  position = "{{ $element.position }}",
+  scale = {{ $element.scale }},
+})
+  {{- end }}
+{{- end}}

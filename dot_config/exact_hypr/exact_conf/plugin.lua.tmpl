@@ -1,0 +1,27 @@
+{{- if .hyprland.hy3 }}
+function setup_hy3()
+  if hl.plugin.hy3 ~= nil then
+    local hy3 = hl.plugin.hy3
+    hl.config({
+      plugin = {
+        hy3 = {
+          autotile = {
+            enable = true,
+            trigger_width = 700,
+            trigger_height = 0,
+          },
+        },
+      },
+    })
+    -- Tab Control
+    hl.bind("ALT + T", hy3.makegroup("tab", { ephemeral = true }))
+    hl.bind("ALT + SHIFT + T", hy3.change_group("toggletab"))
+    hl.bind("mouse:272", hy3.focusTab({mouse = "prioritize_hovered"}))
+    -- Layout control
+    hl.bind("ALT + Z", hy3.change_group("oposite"))
+    hl.bind("ALT + H", hy3.makegroup("h", { ephemeral = true }))
+    hl.bind("ALT + V", hy3.makegroup("v", { ephemeral = true }))
+  end
+end
+setup_hy3()
+{{- end }}

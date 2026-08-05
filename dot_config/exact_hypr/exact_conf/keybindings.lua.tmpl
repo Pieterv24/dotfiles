@@ -1,0 +1,122 @@
+local mainMod = "ALT"
+local terminal = "ghostty +new-window"
+local browser = "firefox-developer-edition"
+local fileManager = "nemo"
+{{- if not .hyprland.hyprlauncher }}
+local menu = "wofi --show drun"
+{{- else }}
+local menu = "hyprlauncher"
+{{- end}}
+local noc_ipc = "qs -c noctalia-shell ipc call"
+
+
+local function bind_cmd(keys, cmd, opts)
+  hl.bind(keys, hl.dsp.exec_cmd(cmd), opts)
+end
+
+-- Application Launchers
+bind_cmd(mainMod .. " + return", terminal)
+bind_cmd(mainMod .. " + B", browser)
+bind_cmd(mainMod .. " + E", fileManager)
+{{- if not .quickshell.noctalia }}
+bind_cmd(mainMod .. " + space", menu)
+bind_cmd(mainMod .. " + M", "wlogout")
+bind_cmd(mainMod .. " + L", "loginctl lock-session")
+{{- else }}
+bind_cmd(mainMod .. " + space", noc_ipc .. " launcher toggle")
+bind_cmd(mainMod .. " + S", noc_ipc .. " controlCenter toggle")
+bind_cmd(mainMod .. " + comma", noc_ipc .. " settings toggle")
+bind_cmd(mainMod .. " + M", noc_ipc .. " sessionMenu toggle")
+bind_cmd(mainMod .. " + L", noc_ipc .. " lockScreen lock")
+{{- end }}
+
+-- Window Actions
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.kill())
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
+
+-- Focus windows
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+
+-- Move windows
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "d" }))
+
+-- Move and resize windows with mouse
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Resize with keyboard
+hl.bind("CTRL + SHIFT + right", hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
+hl.bind("CTRL + SHIFT + left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
+hl.bind("CTRL + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }))
+hl.bind("CTRL + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }))
+
+-- screenshot
+bind_cmd(mainMod .. " + C", "grimblast copy area")
+bind_cmd(mainMod .. " + SHIFT + C", "grimblast save area")
+
+-- Workplace Navigation for workspaces 1-10
+for i = 1, 10 do
+  local key = tostring(i % 10)
+  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+end
+
+-- Workplace Navigation for workspaces 11-20
+for i = 11, 20 do
+  local key = tostring(i % 10)
+  hl.bind(mainMod .. " + CTRL + " .. key, hl.dsp.focus({ workspace = i }))
+  hl.bind(mainMod .. " + SHIFT + CTRL + " .. key, hl.dsp.window.move({ workspace = i }))
+end
+
+-- Workplace Interactions
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "m-1" }))
+hl.bind("SUPER + left", hl.dsp.focus({ workspace = "-1" }))
+hl.bind("SUPER + right", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.focus({ workspace = "empty" }))
+hl.bind("mouse_right", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("mouse_left", hl.dsp.focus({ workspace = "e-1" }))
+
+{{- if not .hyprland.hy3 }}
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + K", hl.dsp.layout("swapsplit"))
+{{- end }}
+
+-- Function keys (Volume, Brightness, Media)
+{{- if .quickshell.noctalia}}
+bind_cmd("XF86AudioRaiseVolume", noc_ipc .. " volume increase", { locked = true, repeating = true })
+bind_cmd("XF86AudioLowerVolume", noc_ipc .. " volume decrease", { locked = true, repeating = true })
+bind_cmd("XF86AudioMute", noc_ipc .. " volume muteOutput", { locked = true })
+bind_cmd("XF86MonBrightnessUp", noc_ipc .. " brightness increase", { locked = true, repeating = true })
+bind_cmd("XF86MonBrightnessDown", noc_ipc .. " brightness decrease", { locked = true, repeating = true })
+bind_cmd("XF86AudioMicMute", noc_ipc .. " volume muteInput", { locked = true })
+bind_cmd("XF86AudioPlay", noc_ipc .. " media play", { locked = true })
+bind_cmd("XF86AudioPause", noc_ipc .. " media pause", { locked = true })
+bind_cmd("XF86AudioNext", noc_ipc .. " media next", { locked = true })
+bind_cmd("XF86AudioPrev", noc_ipc .. " media previous", { locked = true })
+{{- else }}
+bind_cmd("XF86AudioRaiseVolume", "volumectl -u up", { locked = true, repeating = true })
+bind_cmd("XF86AudioLowerVolume", "volumectl -u down", { locked = true, repeating = true })
+bind_cmd("XF86AudioMute", "volumectl -u toggle", { locked = true })
+bind_cmd("XF86MonBrightnessUp", "lightctl up", { locked = true, repeating = true })
+bind_cmd("XF86MonBrightnessDown", "lightctl down", { locked = true, repeating = true })
+bind_cmd("XF86AudioMicMute", "volumectl -m toggle-mute", { locked = true })
+bind_cmd("XF86AudioPlay", "playerctl play-pause", { locked = true })
+bind_cmd("XF86AudioPause", "playerctl play-pause", { locked = true })
+bind_cmd("XF86AudioNext", "playerctl next", { locked = true })
+bind_cmd("XF86AudioPrev", "playerctl previous", { locked = true })
+bind_cmd("XF86Lock", "hyprlock", { locked = true })
+{{- end }}
+
+bind_cmd("code:238", "brightnessctl -d smc::kbd_backlight s +10")
+bind_cmd("code:237", "brightnessctl -d smc::kbd_backlight s 10-")

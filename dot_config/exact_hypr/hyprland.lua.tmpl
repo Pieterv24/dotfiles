@@ -32,7 +32,11 @@ require("conf.autoshutdown")
 require("conf.window")
 {{- if .noctalia.enabled }}
 require("noctalia.decoration")
+    {{- if .noctalia.beta }}
+require("noctalia").apply_theme()
+    {{- else }}
 require("noctalia.noctalia-colors")
+    {{- end }}
 {{- else }}
 require("conf.decoration")
 {{- end }}

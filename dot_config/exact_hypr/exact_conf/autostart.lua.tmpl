@@ -3,9 +3,13 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("~/.config/hypr/scripts/waybar.sh")
 {{- end }}
 
-{{- if and .quickshell.noctalia .quickshell.enabled }}
+{{- if .noctalia.enabled }}
+  {{- if .noctalia.beta }}
+  hl.exec_cmd("noctalia")
+  {{- else }}
   hl.exec_cmd("qs -c noctalia-shell")
-{{- else if .quickshell.enabled }}
+  {{- end }}
+{{- else if and .quickshell.enabled (not .noctalia.enabled) }}
   hl.exec_cmd("qs -c quickway")
 {{- end }}
 
@@ -15,7 +19,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl --user start hyprpolkitagent.service")
   hl.exec_cmd("wl-clip-persist --clipboard regular")
 
-{{- if not .quickshell.noctalia }}
+{{- if not .noctalia.enabled }}
   hl.exec_cmd("systemctl --user start hypridle.service")
   hl.exec_cmd("systemctl start --user dunst.service")
   hl.exec_cmd("avizo-service")

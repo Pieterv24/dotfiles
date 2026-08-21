@@ -7,7 +7,14 @@ local menu = "wofi --show drun"
 {{- else }}
 local menu = "hyprlauncher"
 {{- end}}
+
+{{- if .noctalia.enabled}}
+  {{- if .noctalia.beta }}
+local noc_ipc = "noctalia msg"
+  {{- else }}
 local noc_ipc = "qs -c noctalia-shell ipc call"
+  {{- end }}
+{{- end }}
 
 
 local function bind_cmd(keys, cmd, opts)
@@ -18,20 +25,28 @@ end
 bind_cmd(mainMod .. " + return", terminal)
 bind_cmd(mainMod .. " + B", browser)
 bind_cmd(mainMod .. " + E", fileManager)
-{{- if not .quickshell.noctalia }}
+{{- if not .noctalia.enabled }}
 bind_cmd(mainMod .. " + space", menu)
 bind_cmd(mainMod .. " + M", "wlogout")
 bind_cmd(mainMod .. " + L", "loginctl lock-session")
 {{- else }}
+  {{- if .noctalia.beta }}
+bind_cmd(mainMod .. " + space", noc_ipc .. " panel-toggle launcher")
+bind_cmd(mainMod .. " + S", noc_ipc .. " panel-toggle control-center")
+bind_cmd(mainMod .. " + comma", noc_ipc .. " settings-toggle")
+bind_cmd(mainMod .. " + M", noc_ipc .. " panel-toggle session")
+bind_cmd(mainMod .. " + L", noc_ipc .. " session lock")
+  {{- else }}
 bind_cmd(mainMod .. " + space", noc_ipc .. " launcher toggle")
 bind_cmd(mainMod .. " + S", noc_ipc .. " controlCenter toggle")
 bind_cmd(mainMod .. " + comma", noc_ipc .. " settings toggle")
 bind_cmd(mainMod .. " + M", noc_ipc .. " sessionMenu toggle")
 bind_cmd(mainMod .. " + L", noc_ipc .. " lockScreen lock")
+  {{- end }}
 {{- end }}
 
 -- Window Actions
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.kill())
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
@@ -93,7 +108,19 @@ hl.bind(mainMod .. " + K", hl.dsp.layout("swapsplit"))
 {{- end }}
 
 -- Function keys (Volume, Brightness, Media)
-{{- if .quickshell.noctalia}}
+{{- if .noctalia.enabled }}
+  {{- if .noctalia.beta }}
+bind_cmd("XF86AudioRaiseVolume", noc_ipc .. " volume-up", { locked = true, repeating = true })
+bind_cmd("XF86AudioLowerVolume", noc_ipc .. " volume-down", { locked = true, repeating = true })
+bind_cmd("XF86AudioMute", noc_ipc .. " volume-mute", { locked = true })
+bind_cmd("XF86MonBrightnessUp", noc_ipc .. " brightness-up", { locked = true, repeating = true })
+bind_cmd("XF86MonBrightnessDown", noc_ipc .. " brightness-down", { locked = true, repeating = true })
+bind_cmd("XF86AudioMicMute", noc_ipc .. " mic-mute", { locked = true })
+bind_cmd("XF86AudioPlay", noc_ipc .. " media play", { locked = true })
+bind_cmd("XF86AudioPause", noc_ipc .. " media pause", { locked = true })
+bind_cmd("XF86AudioNext", noc_ipc .. " media next", { locked = true })
+bind_cmd("XF86AudioPrev", noc_ipc .. " media previous", { locked = true })
+  {{- else }}
 bind_cmd("XF86AudioRaiseVolume", noc_ipc .. " volume increase", { locked = true, repeating = true })
 bind_cmd("XF86AudioLowerVolume", noc_ipc .. " volume decrease", { locked = true, repeating = true })
 bind_cmd("XF86AudioMute", noc_ipc .. " volume muteOutput", { locked = true })
@@ -104,6 +131,7 @@ bind_cmd("XF86AudioPlay", noc_ipc .. " media play", { locked = true })
 bind_cmd("XF86AudioPause", noc_ipc .. " media pause", { locked = true })
 bind_cmd("XF86AudioNext", noc_ipc .. " media next", { locked = true })
 bind_cmd("XF86AudioPrev", noc_ipc .. " media previous", { locked = true })
+  {{- end }}
 {{- else }}
 bind_cmd("XF86AudioRaiseVolume", "volumectl -u up", { locked = true, repeating = true })
 bind_cmd("XF86AudioLowerVolume", "volumectl -u down", { locked = true, repeating = true })

@@ -30,7 +30,7 @@ require("conf.autostart")
 require("conf.autoshutdown")
 
 require("conf.window")
-{{- if .quickshell.noctalia }}
+{{- if .noctalia.enabled }}
 require("noctalia.decoration")
 require("noctalia.noctalia-colors")
 {{- else }}

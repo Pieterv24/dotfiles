@@ -4,8 +4,6 @@ packages:
   - bun-bin
   - catppuccin-sddm-theme-macchiato
   - chezmoi_modify_manager
-  - noctalia-shell
-  - noctalia-qs
   - oh-my-posh
   - projecteur-git
   - ttf-material-symbols-variable-git
@@ -40,6 +38,7 @@ packages:
   - power-profiles-daemon
   - qt5ct
   - qt6ct
+  - quickshell
   - ttf-cascadia-code
   - ttf-nerd-fonts-symbols
   - ttf-nerd-fonts-symbols-mono

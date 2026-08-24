@@ -28,6 +28,8 @@ margin_ends = 10
 scale = 1
 start = [ "taskbar", "spacer_default", "media" ]
 thickness = 36
+capsule = true
+background_opacity = 0.8
 
 [[bar.default.capsule_group]]
 accordion = false
@@ -82,6 +84,7 @@ format = "{:%H:%M}, {:%d %b}"
 
 [widget.control-center]
 glyph = "adjustments"
+capsule = true
 
 [widget.cpu]
 show_value = false
@@ -118,6 +121,7 @@ capsule = true
 [widget.workspaces]
 hide_when_empty = true
 show_labels = false
+capsule = false
 
 [widget.tray]
 capsule = true
@@ -127,3 +131,7 @@ drawer = true
 group_by_workspace = true
 group_single_icon_per_app = true
 show_active_indicator = false
+capsule = false
+
+[widget.notifications]
+capsule = true

@@ -17,8 +17,8 @@ end = [
 ]
 margin_edge = 5
 margin_ends = 10
-scale = 1.2
-start = [ "workspaces", "spacer_default", "media" ]
+scale = 1
+start = [ "taskbar", "spacer_default", "media" ]
 thickness = 36
 
 [[bar.default.capsule_group]]
@@ -120,3 +120,8 @@ show_labels = false
 [widget.tray]
 capsule = true
 drawer = true
+
+[widget.taskbar]
+group_by_workspace = true
+group_single_icon_per_app = true
+show_active_indicator = false

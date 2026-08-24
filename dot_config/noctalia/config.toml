@@ -6,6 +6,35 @@ wallpaper_scheme = "m3-content"
 [theme.templates]
 builtin_ids = [ "gtk3", "gtk4", "hyprland", "qt" ]
 
+[config]
+
+[control_center.calendar]
+show_week_numbers = true
+
+[location]
+address = "Leeuwarden, The Netherlands"
+
+[osd]
+position = "top_right"
+
+[shell]
+lang = "en"
+
+[shell.panel]
+open_near_click_control_center = true
+open_near_click_wallpaper = true
+session_placement = "floating"
+session_position = "center"
+
+[wallpaper]
+directory = "/home/pieter/Pictures/Wallpapers"
+
+[wallpaper.automation]
+enabled = true
+
+[desktop_widgets]
+enabled = false
+
 [bar.default]
 concave_edge_corners = false
 end = [
@@ -40,35 +69,6 @@ id = "system_monitoring"
 members = [ "cpu", "temp", "ram" ]
 opacity = 1.0
 padding = 6.0
-
-[config]
-
-[control_center.calendar]
-show_week_numbers = true
-
-[desktop_widgets]
-enabled = false
-
-[location]
-address = "Leeuwarden, The Netherlands"
-
-[osd]
-position = "top_right"
-
-[shell]
-lang = "en"
-
-[shell.panel]
-open_near_click_control_center = true
-open_near_click_wallpaper = true
-session_placement = "floating"
-session_position = "center"
-
-[wallpaper]
-directory = "/home/pieter/Pictures/Wallpapers"
-
-[wallpaper.automation]
-enabled = true
 
 [widget.battery]
 capsule = true

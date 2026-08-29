@@ -73,7 +73,7 @@ padding = 6.0
 [widget.battery]
 capsule = true
 display_mode = "graphic"
-show_label = false
+show_label = true
 
 [widget.bluetooth]
 capsule = true

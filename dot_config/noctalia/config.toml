@@ -5,6 +5,7 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 builtin_ids = [ "gtk3", "gtk4", "hyprland", "qt" ]
+community_ids = [ "pywalfox-beta4", "steam", "spicetify", "hyprtoolkit" ]
 
 [config]
 

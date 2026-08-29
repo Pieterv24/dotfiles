@@ -1,4 +1,3 @@
-{{- if .hyprland.hy3 }}
 function setup_hy3()
   if hl.plugin.hy3 ~= nil then
     local hy3 = hl.plugin.hy3
@@ -24,4 +23,3 @@ function setup_hy3()
   end
 end
 setup_hy3()
-{{- end }}

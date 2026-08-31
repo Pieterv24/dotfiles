@@ -1,7 +1,6 @@
 packages:
   aur:
   - breeze-default-cursor-theme
-  - bun-bin
   - catppuccin-sddm-theme-macchiato
   - chezmoi_modify_manager
   - oh-my-posh
@@ -15,6 +14,7 @@ packages:
   pacman:
   - adobe-source-code-pro-fonts
   - brightnessctl
+  - bun
   - chezmoi
   - easyeffects
   - element-desktop

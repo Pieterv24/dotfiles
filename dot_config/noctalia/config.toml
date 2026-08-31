@@ -31,7 +31,7 @@ session_position = "center"
 directory = "/home/pieter/Pictures/Wallpapers"
 
 [wallpaper.automation]
-enabled = true
+enabled = false
 
 [desktop_widgets]
 enabled = false

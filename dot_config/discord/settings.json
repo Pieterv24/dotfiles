@@ -2,6 +2,11 @@
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "SKIP_HOST_UPDATE": true,
-  "BACKGROUND_COLOR": "#000000",
-  "chromiumSwitches": {}
+  "BACKGROUND_COLOR": "#121214",
+  "chromiumSwitches": {},
+  "openH264Enabled": true,
+  "offloadAdmControls": true,
+  "DESKTOP_TTI_SPLASH_USE_WEBP": true,
+  "DESKTOP_TTI_EARLY_UPDATE_CHECK": true,
+  "DESKTOP_TTI_UPDATE_BACKOFF_MAX_MS": 3000
 }

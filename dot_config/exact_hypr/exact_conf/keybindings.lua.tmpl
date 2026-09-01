@@ -103,8 +103,12 @@ hl.bind("mouse_right", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("mouse_left", hl.dsp.focus({ workspace = "e-1" }))
 
 {{- if not .hyprland.hy3 }}
+-- Dwindle keybinds
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + K", hl.dsp.layout("swapsplit"))
+-- hl.bind(mainMod .. " + N", hl.dsp.layout("rotatesplit"))
+-- hl.bind(mainMod .. " + M", hl.dsp.layout("preselect"))
+-- hl.bind(mainMod .. " + ,", hl.dsp.layout("movetoroot"))
 {{- end }}
 
 -- Function keys (Volume, Brightness, Media)

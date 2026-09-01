@@ -21,6 +21,9 @@ position = "top_right"
 [shell]
 lang = "en"
 
+[shell.greeter_sync]
+auto_sync = true
+
 [shell.panel]
 open_near_click_control_center = true
 open_near_click_wallpaper = true

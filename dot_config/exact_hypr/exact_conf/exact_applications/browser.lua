@@ -5,6 +5,24 @@ hl.window_rule({ tile = true, opacity = "1 0.97", match = { tag = "chromium-base
 hl.window_rule({ opacity = "1 0.97", match = { tag = "firefox-based-browser" } })
 hl.window_rule({ opacity = "1.0 1.0", match = { initial_title = "((?i)(?:[a-z0-9-]+\\.)*youtube\\.com_/|app\\.zoom\\.us_/wc/home)" } })
 
+hl.window_rule({
+  name = "floating-password-firefox",
+  match = {
+    class = "^(firefox-developer-edition|firefox)$",
+    title = "^Password Required - (.*)$",
+  },
+  float = true,
+})
+
+hl.window_rule({
+    name = "privacy-browsers-float",
+    match = { class = "^(Tor Browser|Mullvad Browser)$" },
+    float = true,
+    center = true,
+    fullscreen_state = "0 0",
+    suppress_event = "maximize",
+})
+
 hl.on("window.open", function(w)
     if w.class ~= "firefox" then return end
     if w.initial_title ~= "Mozilla Firefox" then return end

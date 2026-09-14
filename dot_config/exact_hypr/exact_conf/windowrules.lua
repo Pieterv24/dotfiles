@@ -52,15 +52,6 @@ hl.window_rule({
   opacity = 0.0,
 })
 
-hl.window_rule({
-  name = "floating-password-firefox",
-  match = {
-    class = "^(firefox-developer-edition|firefox)$",
-    title = "^Password Required - (.*)$",
-  },
-  float = true,
-})
-
 -- Noctalia Settings
 hl.window_rule({
     match = { class = "dev.noctalia.Noctalia" },

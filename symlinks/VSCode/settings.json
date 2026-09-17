@@ -38,6 +38,14 @@
 
     // Chat Settings
     "chat.useAgentsMdFile": true,
+    "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
+        "https://wiki.hypr.land": true
+    },
+
+    // Github
+    "github.copilot.nextEditSuggestions.enabled": true,
 
     // Git Settings
     "git.enableCommitSigning": true,
@@ -54,9 +62,6 @@
 
     // Debug settings
     "debug.allowBreakpointsEverywhere": true,
-
-    // Github
-    "github.copilot.nextEditSuggestions.enabled": true,
 
     // Color settings
     "editor.tokenColorCustomizations": {
@@ -166,9 +171,7 @@
     // Docker
     "docker.extension.enableComposeLanguageServer": false,
     
-    "chat.tools.urls.autoApprove": {
-        "https://code.visualstudio.com": true,
-        "https://github.com/microsoft/vscode/wiki/*": true,
-        "https://wiki.hypr.land": true
-    }
+    // Claude code
+    "claudeCode.hideOnboarding": true,
+    "claudeCode.preferredLocation": "panel"
 }

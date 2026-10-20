@@ -26,6 +26,8 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl start --user hyprpaper.service")
 {{- end }}
 
+  hl.exec_cmd('playerctld daemon')
+
   hl.exec_cmd('element-desktop --password-store="gnome-libsecret"', { workspace = "11 silent" })
   hl.exec_cmd("discord", { workspace = "11 silent" })
 

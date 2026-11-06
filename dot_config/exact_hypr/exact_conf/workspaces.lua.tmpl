@@ -19,7 +19,7 @@ hl.workspace_rule({ workspace = "9", monitor = "{{$primary_monitor}}" })
 hl.workspace_rule({ workspace = "10", monitor = "{{$primary_monitor}}", default_name = "Gaming", no_border = true, no_rounding = true, gaps_out = 0, gaps_in = 0, no_shadow = true })
 
 hl.workspace_rule({ workspace = "11", monitor = "{{$secondary_monitor}}", default_name = "Socials", default = true, persistent = true })
-hl.workspace_rule({ workspace = "12", monitor = "{{$secondary_monitor}}", default_name = "Music", on_created_empty = "spotify-launcher" })
+hl.workspace_rule({ workspace = "12", monitor = "{{$secondary_monitor}}", default_name = "Music" })
 hl.workspace_rule({ workspace = "13", monitor = "{{$secondary_monitor}}" })
 hl.workspace_rule({ workspace = "14", monitor = "{{$secondary_monitor}}" })
 hl.workspace_rule({ workspace = "15", monitor = "{{$secondary_monitor}}" })
@@ -28,3 +28,13 @@ hl.workspace_rule({ workspace = "17", monitor = "{{$secondary_monitor}}" })
 hl.workspace_rule({ workspace = "18", monitor = "{{$secondary_monitor}}" })
 hl.workspace_rule({ workspace = "19", monitor = "{{$secondary_monitor}}" })
 hl.workspace_rule({ workspace = "20", monitor = "{{$secondary_monitor}}" })
+
+hl.on("workspace.created", function(w)
+  if not w then
+    return
+  end
+
+  if w.id == 12 and w.is_empty then
+    hl.exec_cmd("spotify-launcher")
+  end
+end)

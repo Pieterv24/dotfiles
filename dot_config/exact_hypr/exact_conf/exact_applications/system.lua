@@ -4,8 +4,15 @@ hl.window_rule({ tag = "+floating-window", match = { class = "(org.gnome.Nautilu
 hl.window_rule({
   tag = "+floating-window",
   match = {
-    class = "(xdg-desktop-portal-gtk|sublime_text|DesktopEditors|org.gnome.Nautilus)",
-    title = "^(Open.*Files?|Open [F|f]older.*|Save.*Files?|Save.*As|Save|All Files|.*wants to [open|save].*|[C|c]hoose.*|.*[I|i]mport.*|blob:.*)",
+    class = "(xdg-desktop-portal-gtk|sublime_text|DesktopEditors|org.gnome.Nautilus|soffice)",
+    title = "^(Open.*Files?|Open [F|f]older.*|Save.*Files?|Save.*As|Save|All Files|.*wants to [open|save].*|[C|c]hoose.*|.*[I|i]mport.*|blob:.*|Open)",
+  },
+})
+hl.window_rule({
+  center = true,
+  match = {
+    class = "DesktopEditors",
+    float = true,
   },
 })
 

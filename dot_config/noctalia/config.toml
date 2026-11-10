@@ -49,7 +49,7 @@ end = [
     "volume",
     "input_volume",
     "spacer_default",
-    "wallpaper",
+    "group:wallpaper",
     "power_profile",
     "group:system_monitoring",
     "battery",
@@ -71,6 +71,17 @@ enabled = true
 fill = "surface_container"
 id = "system_monitoring"
 members = [ "cpu", "temp", "ram" ]
+opacity = 1.0
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = true
+accordion_direction = "end"
+border_width = 1.0
+enabled = true
+fill = "surface_container"
+id = "wallpaper"
+members = [ "wallpaper", "wallpaper_depth", "wallhaven" ]
 opacity = 1.0
 padding = 6.0
 
@@ -139,3 +150,19 @@ capsule = false
 
 [widget.notifications]
 capsule = true
+
+[widget.wallpaper_depth]
+type = "noctalia/wallpaper_depth:bar"
+
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
+
+[plugins]
+enabled = [ "noctalia/bitwarden", "noctalia/wallpaper_depth", "noctalia/wallhaven"]
+
+[plugin_settings."noctalia/wallhaven"]
+browser_open_near_click = true
+
+[plugin_settings."noctalia/wallpaper_depth"]
+manager_open_near_click = true
+threshold = 12

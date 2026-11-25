@@ -1,7 +1,15 @@
 -- Dropdown terminal
 local dropdown_cmd = "ghostty --class=com.pieter.dropdown"
 
-hl.workspace_rule({ workspace = "special:dropdown", on_created_empty = dropdown_cmd })
+hl.on("workspace.created", function(w)
+    if not w then
+        return
+    end
+
+    if w.name == "special:dropdown" and w.is_empty then
+        hl.exec_cmd(dropdown_cmd)
+    end
+end)
 
 hl.window_rule({
     name = "dropdown-terminal",

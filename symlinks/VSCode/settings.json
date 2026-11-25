@@ -13,8 +13,6 @@
     "terminal.integrated.fontFamily": "'Cascadia Mono', 'Symbols Nerd Font Mono', 'monospace', monospace",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.enableImages": true,
-    
-
     // Editor Settings
     "editor.fontFamily": "'Source Code Pro', 'Symbols Nerd Font Mono', 'monospace', monospace",
     "editor.fontWeight": "500",
@@ -173,5 +171,9 @@
     
     // Claude code
     "claudeCode.hideOnboarding": true,
-    "claudeCode.preferredLocation": "panel"
+    "claudeCode.preferredLocation": "panel",
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.md": "vscode.markdown.preview.editor"
+    }
 }
